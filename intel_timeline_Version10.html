@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Intel Timeline</title>
+  <title>Intel Timeline Responsive Fixed</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -12,240 +12,298 @@
       color: #222;
     }
     .wrap {
-      max-width: 900px;
+      max-width: 1000px;
       margin: 0 auto;
       padding: 10px;
-    }
-    .intel-header {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 10px;
-    }
-    .intel-header img {
-      height: 44px;
     }
     h1 {
       margin-bottom: 5px;
       text-align: center;
       color: #222;
       font-weight: 700;
-      font-size: 1.3rem;
+      font-size: 1.4rem;
+    }
+    .header-img {
+      display: block;
+      margin: 20px auto;
+      max-width: 200px;
     }
     .timeline-horizontal {
       position: relative;
-      margin: 40px 0 50px 0;
-      height: 330px;
-      background: transparent;
+      margin: 50px auto 50px auto;
+      height: 480px;
       min-width: 300px;
+      max-width: 1000px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
     }
-    .timeline-axis {
+    .timeline-axis-horizontal {
       position: absolute;
-      top: 100px;
-      left: 60px;
-      width: 780px;
-      height: 14px;
+      top: 220px;
+      left: 100px;
+      width: 800px;
+      height: 16px;
       background: linear-gradient(90deg, #f87171 0%, #fbbf24 25%, #34d399 45%, #38bdf8 75%, #a78bfa 100%);
-      border-radius: 7px;
+      border-radius: 9px;
       z-index: 0;
       box-shadow: 0 2px 10px #0002;
-      min-width: 260px;
     }
-    .timeline-node {
+    .timeline-nodes-row {
+      display: flex;
       position: absolute;
-      top: 77px;
-      width: 48px;
-      height: 48px;
+      top: 212px;
+      left: 100px;
+      width: 800px;
+      justify-content: space-between;
+      z-index: 2;
+    }
+    .timeline-node-horizontal {
+      width: 66px;
+      height: 66px;
       border-radius: 50%;
-      border: 3px solid #fff;
-      box-shadow: 0 2px 10px 0 rgba(56,189,248,0.13);
+      border: 6px solid #fff;
+      box-shadow: 0 2px 18px 0 rgba(56,189,248,0.20);
+      background: #38bdf8;
       cursor: pointer;
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
-      outline: none;
+      transition: box-shadow .2s, border-color .2s, background .2s;
+      position: relative;
       z-index: 2;
-      background: #6cc4ff;
-      transition: box-shadow .2s, border-color .2s;
-      padding: 0;
     }
-    .timeline-node[data-index="0"] { left: 60px; background: #f87171; }
-    .timeline-node[data-index="1"] { left: 280px; background: #fbbf24; }
-    .timeline-node[data-index="2"] { left: 500px; background: #34d399; }
-    .timeline-node[data-index="3"] { left: 720px; background: #38bdf8; }
-    .timeline-node:hover, .timeline-node:focus {
-      box-shadow: 0 0 0 8px #38bdf880;
-      border-color: #38bdf8;
+    .timeline-node-horizontal[data-index="0"] { background: #f87171; }
+    .timeline-node-horizontal[data-index="1"] { background: #fbbf24; }
+    .timeline-node-horizontal[data-index="2"] { background: #34d399; }
+    .timeline-node-horizontal[data-index="3"] { background: #38bdf8; }
+    .timeline-node-horizontal.active {
+      box-shadow: 0 0 0 18px #38bdf880;
+      border-color: #0ea5e9;
+      background: #0ea5e9;
       z-index: 3;
     }
-    .timeline-node.active {
-      box-shadow: 0 0 0 12px #6cc4ff50;
-      border-color: #6cc4ff;
-      z-index: 3;
-    }
-    .timeline-node-year {
-      font-weight: 600;
-      font-size: 15px;
+    .timeline-node-year-horizontal {
+      font-weight: 700;
+      font-size: 19px;
       color: #fff;
-      background: rgba(0,0,0,0.10);
-      border-radius: 7px;
-      padding: 1px 6px;
-      margin-top: 4px;
-      margin-bottom: 0;
-      border: none;
-      box-shadow: none;
-      display: block;
+      pointer-events: none;
+      user-select: none;
     }
-    .timeline-node img {
-      width: 28px;
-      height: 28px;
-      border-radius: 6px;
-      border: 2px solid #fff;
-      margin-bottom: 2px;
-      box-shadow: 0 1px 5px 0 #0001;
-      background: none;
-      display: block;
-    }
-    .timeline-card {
+    .timeline-card-horizontal {
       position: absolute;
-      width: 170px;
       background: #fff;
-      border-radius: 16px;
-      box-shadow: 0 4px 16px 0 #0ea5e944;
+      border-radius: 20px;
+      box-shadow: 0 4px 22px 0 #0ea5e944;
       display: flex;
       flex-direction: column;
-      align-items: center;
-      padding: 10px 10px 8px 10px;
-      z-index: 5;
-      opacity: 1;
-      pointer-events: auto;
-      transition: box-shadow .25s;
+      align-items: flex-start;
+      padding: 20px 24px;
+      z-index: 10;
+      opacity: 0;
+      pointer-events: none;
+      min-width: 240px;
+      max-width: 340px;
+      width: 300px;
+      transition: opacity 0.3s, transform 0.3s;
+      transform: scaleY(0.95) scaleX(0.96);
     }
-    .timeline-card img {
-      width: 80px;
-      border-radius: 8px;
-      margin-bottom: 8px;
+    .timeline-card-horizontal.visible {
+      opacity: 1 !important;
+      pointer-events: auto !important;
+      transform: scaleY(1) scaleX(1);
     }
-    .timeline-card h3 {
-      margin: 0 0 5px 0;
-      text-align: center;
-      color: #222;
-      font-size: 1rem;
-      font-weight: 600;
+    .timeline-card-horizontal img {
+      width: 100%;
+      border-radius: 14px;
+      margin-bottom: 14px;
+      align-self: center;
     }
-    .timeline-card p {
-      margin: 0;
-      color: #555;
-      text-align: center;
-      font-size: 14px;
-    }
-    .timeline-card[data-index="0"] { left: 25px; top: 160px; }
-    .timeline-card[data-index="1"] { left: 245px; top: 160px; }
-    .timeline-card[data-index="2"] { left: 465px; top: 160px; }
-    .timeline-card[data-index="3"] { left: 685px; top: 160px; }
-    @media (max-width: 950px) {
-      .timeline-horizontal { max-width: 98vw; }
-      .timeline-axis { left: 3vw; width: 92vw; min-width: 180px; }
-      .timeline-node[data-index="0"] { left: 3vw; }
-      .timeline-node[data-index="1"] { left: 27vw; }
-      .timeline-node[data-index="2"] { left: 53vw; }
-      .timeline-node[data-index="3"] { left: 78vw; }
-      .timeline-card[data-index="0"] { left: 0vw;}
-      .timeline-card[data-index="1"] { left: 24vw;}
-      .timeline-card[data-index="2"] { left: 50vw;}
-      .timeline-card[data-index="3"] { left: 76vw;}
-    }
+    .card-above { top: 0px; }
+    .card-below { top: 330px; }
+    .timeline-card-horizontal[data-index="0"] { left: 100px; top: -20px; }
+    .timeline-card-horizontal[data-index="1"] { left: 320px; }
+    .timeline-card-horizontal[data-index="2"] { left: 540px; top: -20px; }
+    .timeline-card-horizontal[data-index="3"] { left: 760px; }
+
+    .timeline-vertical { display: none; }
+
+    /* ======= MOBILE: VERTICAL TIMELINE ======= */
     @media (max-width: 650px) {
-      .wrap {
-        max-width: 98vw;
-        padding: 3vw;
+      .wrap { max-width: 98vw; }
+      h1 { font-size: 1.1rem; }
+      .timeline-horizontal { display: none; }
+      .timeline-vertical {
+        position: relative;
+        margin: 30px auto;
+        width: 98vw;
+        display: block;
+        min-height: 900px;
       }
-      .timeline-horizontal {
-        height: 900px;
-        margin: 10px 0 10px 0;
-      }
-      .timeline-axis {
+      .timeline-axis-vertical {
         position: absolute;
-        left: 42px;
-        top: 50px;
-        height: 800px;
-        width: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 0;
+        bottom: 0;
+        height: 100%;
+        width: 14px;
         background: linear-gradient(180deg, #f87171 0%, #fbbf24 25%, #34d399 45%, #38bdf8 75%, #a78bfa 100%);
-        border-radius: 5px;
-        min-width: 0;
+        border-radius: 7px;
+        z-index: 0;
+        box-shadow: 0 2px 10px #0002;
       }
-      .timeline-node {
-        width: 38px;
-        height: 38px;
-        left: 28px;
+      .timeline-node-vertical {
+        position: relative;
+        margin: 80px auto;
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        border: 6px solid #fff;
+        box-shadow: 0 2px 14px 0 rgba(56,189,248,0.20);
+        background: #38bdf8;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 2;
+        transition: box-shadow .2s, border-color .2s, background .2s;
       }
-      .timeline-node[data-index="0"] { top: 60px; }
-      .timeline-node[data-index="1"] { top: 260px; }
-      .timeline-node[data-index="2"] { top: 460px; }
-      .timeline-node[data-index="3"] { top: 660px; }
-      .timeline-card {
-        width: 78vw;
-        left: 70px;
-        padding: 12px 10px 8px 10px;
+      .timeline-node-vertical[data-index="0"] { background: #f87171; }
+      .timeline-node-vertical[data-index="1"] { background: #fbbf24; }
+      .timeline-node-vertical[data-index="2"] { background: #34d399; }
+      .timeline-node-vertical[data-index="3"] { background: #38bdf8; }
+      .timeline-node-vertical.active {
+        box-shadow: 0 0 0 16px #38bdf880;
+        border-color: #0ea5e9;
+        background: #0ea5e9;
       }
-      .timeline-card[data-index="0"] { top: 36px; }
-      .timeline-card[data-index="1"] { top: 236px; }
-      .timeline-card[data-index="2"] { top: 436px; }
-      .timeline-card[data-index="3"] { top: 636px; }
-      h1 {
-        font-size: 1.1rem;
+      .timeline-node-year-vertical {
+        font-weight: 700;
+        font-size: 17px;
+        color: #fff;
+        pointer-events: none;
+        user-select: none;
+      }
+      .timeline-card-vertical {
+        margin: -10px auto 30px auto;
+        background: #fff;
+        border-radius: 14px;
+        box-shadow: 0 4px 12px 0 #0ea5e944;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 12px;
+        z-index: 10;
+        opacity: 0;
+        pointer-events: none;
+        max-width: 90vw;
+        transition: opacity 0.3s, transform 0.3s;
+        transform: scaleY(0.95) scaleX(0.96);
+      }
+      .timeline-card-vertical.visible {
+        opacity: 1 !important;
+        pointer-events: auto !important;
+        transform: scaleY(1) scaleX(1);
+      }
+      .timeline-card-vertical img {
+        width: 100%;
+        border-radius: 10px;
+        margin-bottom: 10px;
       }
     }
   </style>
 </head>
 <body>
   <div class="wrap">
-    <div class="intel-header">
-      <img src="/mnt/data/intel-logo.png" alt="Intel Logo">
-    </div>
+    <img src="intel-header-logo.svg" alt="Intel Header Logo" class="header-img" />
     <h1>Intel Timeline</h1>
-    <div class="timeline-horizontal" aria-label="Interactive timeline">
-      <div class="timeline-axis"></div>
-      <!-- Timeline nodes -->
-      <button class="timeline-node" data-index="0" aria-label="1968 Intel Founded" tabindex="0">
-        <img src="/mnt/data/995cae57-0dd8-4143-97aa-a8edb2421ace.png" alt="Intel founding 1968">
-        <span class="timeline-node-year">1968</span>
-      </button>
-      <button class="timeline-node" data-index="1" aria-label="1971 First Microprocessor" tabindex="0">
-        <img src="/mnt/data/c7969f43-db91-452c-82f4-499dfededb90.png" alt="Early Microprocessor">
-        <span class="timeline-node-year">1971</span>
-      </button>
-      <button class="timeline-node" data-index="2" aria-label="1978 Intel 8086" tabindex="0">
-        <img src="/mnt/data/8e74a524-8540-4385-8b33-cd6e52bd68d7.png" alt="Intel 8086">
-        <span class="timeline-node-year">1978</span>
-      </button>
-      <button class="timeline-node" data-index="3" aria-label="1985 Intel Innovation" tabindex="0">
-        <img src="/mnt/data/44b92773-5dbc-470f-ba66-a59c6b0bba1b.png" alt="Intel 1985 Processor">
-        <span class="timeline-node-year">1985</span>
-      </button>
-      <!-- Timeline cards (always visible for clarity) -->
-      <div class="timeline-card" data-index="0" id="card-0">
-        <img src="/mnt/data/995cae57-0dd8-4143-97aa-a8edb2421ace.png" alt="Intel founding 1968">
+    <!-- Desktop: Horizontal -->
+    <div class="timeline-horizontal" aria-label="Horizontal Timeline">
+      <div class="timeline-axis-horizontal"></div>
+      <div class="timeline-nodes-row">
+        <button class="timeline-node-horizontal" data-index="0"><span class="timeline-node-year-horizontal">1968</span></button>
+        <button class="timeline-node-horizontal" data-index="1"><span class="timeline-node-year-horizontal">1971</span></button>
+        <button class="timeline-node-horizontal" data-index="2"><span class="timeline-node-year-horizontal">1978</span></button>
+        <button class="timeline-node-horizontal" data-index="3"><span class="timeline-node-year-horizontal">1985</span></button>
+      </div>
+      <div class="timeline-card-horizontal card-above" data-index="0">
+        <img src="image4.jpg" alt="Intel 1968" />
         <h3>1968 — Intel Founded</h3>
         <p>Intel was founded in 1968, marking the beginning of the modern semiconductor industry.</p>
       </div>
-      <div class="timeline-card" data-index="1" id="card-1">
-        <img src="/mnt/data/c7969f43-db91-452c-82f4-499dfededb90.png" alt="Early Microprocessor">
+      <div class="timeline-card-horizontal card-below" data-index="1">
+        <img src="image3.jpg" alt="Intel 1971" />
         <h3>1971 — First Microprocessor</h3>
         <p>Intel introduced the world’s first commercial microprocessor, revolutionizing computing.</p>
       </div>
-      <div class="timeline-card" data-index="2" id="card-2">
-        <img src="/mnt/data/8e74a524-8540-4385-8b33-cd6e52bd68d7.png" alt="Intel 8086">
+      <div class="timeline-card-horizontal card-above" data-index="2">
+        <img src="image2.jpg" alt="Intel 1978" />
         <h3>1978 — Intel 8086</h3>
         <p>The Intel 8086 microprocessor launched, laying the foundation for the x86 architecture.</p>
       </div>
-      <div class="timeline-card" data-index="3" id="card-3">
-        <img src="/mnt/data/44b92773-5dbc-470f-ba66-a59c6b0bba1b.png" alt="Intel 1985 Processor">
+      <div class="timeline-card-horizontal card-below" data-index="3">
+        <img src="image1.jpg" alt="Intel 1985" />
+        <h3>1985 — Intel Innovation</h3>
+        <p>Intel continued to push forward with powerful processors, shaping the future of PCs.</p>
+      </div>
+    </div>
+    <!-- Mobile: Vertical Timeline -->
+    <div class="timeline-vertical" aria-label="Vertical Timeline">
+      <div class="timeline-axis-vertical"></div>
+      <button class="timeline-node-vertical" data-index="0"><span class="timeline-node-year-vertical">1968</span></button>
+      <div class="timeline-card-vertical" data-index="0">
+        <img src="image4.jpg" alt="Intel 1968" />
+        <h3>1968 — Intel Founded</h3>
+        <p>Intel was founded in 1968, marking the beginning of the modern semiconductor industry.</p>
+      </div>
+      <button class="timeline-node-vertical" data-index="1"><span class="timeline-node-year-vertical">1971</span></button>
+      <div class="timeline-card-vertical" data-index="1">
+        <img src="image3.jpg" alt="Intel 1971" />
+        <h3>1971 — First Microprocessor</h3>
+        <p>Intel introduced the world’s first commercial microprocessor, revolutionizing computing.</p>
+      </div>
+      <button class="timeline-node-vertical" data-index="2"><span class="timeline-node-year-vertical">1978</span></button>
+      <div class="timeline-card-vertical" data-index="2">
+        <img src="image2.jpg" alt="Intel 1978" />
+        <h3>1978 — Intel 8086</h3>
+        <p>The Intel 8086 microprocessor launched, laying the foundation for the x86 architecture.</p>
+      </div>
+      <button class="timeline-node-vertical" data-index="3"><span class="timeline-node-year-vertical">1985</span></button>
+      <div class="timeline-card-vertical" data-index="3">
+        <img src="image1.jpg" alt="Intel 1985" />
         <h3>1985 — Intel Innovation</h3>
         <p>Intel continued to push forward with powerful processors, shaping the future of PCs.</p>
       </div>
     </div>
   </div>
+  <script>
+    function setupTimeline(selectorNode, selectorCard, parentSelector) {
+      const nodes = document.querySelectorAll(selectorNode);
+      const cards = document.querySelectorAll(selectorCard);
+
+      nodes.forEach((node, i) => {
+        node.addEventListener('click', () => showCard(i), { passive: true });
+        node.addEventListener('touchstart', () => showCard(i), { passive: true });
+        node.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            showCard(i);
+          }
+        });
+      });
+
+      function showCard(index) {
+        cards.forEach((card, i) => {
+          card.classList.toggle('visible', i === index);
+          nodes[i].classList.toggle('active', i === index);
+        });
+      }
+    }
+
+    setupTimeline('.timeline-node-horizontal', '.timeline-card-horizontal', '.timeline-horizontal');
+    setupTimeline('.timeline-node-vertical', '.timeline-card-vertical', '.timeline-vertical');
+  </script>
 </body>
 </html>
