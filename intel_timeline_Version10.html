@@ -42,8 +42,8 @@
     .timeline-axis-horizontal {
       position: absolute;
       top: 220px;
-      left: 100px;
-      width: 800px;
+      left: 50px;
+      width: 900px;
       height: 16px;
       background: linear-gradient(90deg, #f87171 0%, #fbbf24 25%, #34d399 45%, #38bdf8 75%, #a78bfa 100%);
       border-radius: 9px;
@@ -54,8 +54,8 @@
       display: flex;
       position: absolute;
       top: 212px;
-      left: 100px;
-      width: 800px;
+      left: 50px;
+      width: 900px;
       justify-content: space-between;
       z-index: 2;
     }
@@ -78,6 +78,10 @@
     .timeline-node-horizontal[data-index="1"] { background: #fbbf24; }
     .timeline-node-horizontal[data-index="2"] { background: #34d399; }
     .timeline-node-horizontal[data-index="3"] { background: #38bdf8; }
+    .timeline-node-horizontal[data-index="4"] { background: #a78bfa; }
+    .timeline-node-horizontal[data-index="5"] { background: #f87171; }
+    .timeline-node-horizontal[data-index="6"] { background: #fbbf24; }
+    .timeline-node-horizontal[data-index="7"] { background: #34d399; }
     .timeline-node-horizontal.active {
       box-shadow: 0 0 0 18px #38bdf880;
       border-color: #0ea5e9;
@@ -122,10 +126,14 @@
     }
     .card-above { top: 0px; }
     .card-below { top: 330px; }
-    .timeline-card-horizontal[data-index="0"] { left: 100px; top: -20px; }
-    .timeline-card-horizontal[data-index="1"] { left: 320px; }
-    .timeline-card-horizontal[data-index="2"] { left: 540px; top: -20px; }
-    .timeline-card-horizontal[data-index="3"] { left: 760px; }
+    .timeline-card-horizontal[data-index="0"] { left: 50px; top: -20px; }
+    .timeline-card-horizontal[data-index="1"] { left: 178px; }
+    .timeline-card-horizontal[data-index="2"] { left: 307px; top: -20px; }
+    .timeline-card-horizontal[data-index="3"] { left: 436px; }
+    .timeline-card-horizontal[data-index="4"] { left: 565px; top: -20px; }
+    .timeline-card-horizontal[data-index="5"] { left: 694px; }
+    .timeline-card-horizontal[data-index="6"] { left: 823px; top: -20px; }
+    .timeline-card-horizontal[data-index="7"] { left: 650px; }
 
     .timeline-vertical { display: none; }
 
@@ -174,6 +182,10 @@
       .timeline-node-vertical[data-index="1"] { background: #fbbf24; }
       .timeline-node-vertical[data-index="2"] { background: #34d399; }
       .timeline-node-vertical[data-index="3"] { background: #38bdf8; }
+      .timeline-node-vertical[data-index="4"] { background: #a78bfa; }
+      .timeline-node-vertical[data-index="5"] { background: #f87171; }
+      .timeline-node-vertical[data-index="6"] { background: #fbbf24; }
+      .timeline-node-vertical[data-index="7"] { background: #34d399; }
       .timeline-node-vertical.active {
         box-shadow: 0 0 0 16px #38bdf880;
         border-color: #0ea5e9;
@@ -227,6 +239,10 @@
         <button class="timeline-node-horizontal" data-index="1"><span class="timeline-node-year-horizontal">1971</span></button>
         <button class="timeline-node-horizontal" data-index="2"><span class="timeline-node-year-horizontal">1978</span></button>
         <button class="timeline-node-horizontal" data-index="3"><span class="timeline-node-year-horizontal">1985</span></button>
+        <button class="timeline-node-horizontal" data-index="4"><span class="timeline-node-year-horizontal">1993</span></button>
+        <button class="timeline-node-horizontal" data-index="5"><span class="timeline-node-year-horizontal">2006</span></button>
+        <button class="timeline-node-horizontal" data-index="6"><span class="timeline-node-year-horizontal">2017</span></button>
+        <button class="timeline-node-horizontal" data-index="7"><span class="timeline-node-year-horizontal">2023</span></button>
       </div>
       <div class="timeline-card-horizontal card-above" data-index="0">
         <img src="image4.jpg" alt="Intel 1968" />
@@ -247,6 +263,26 @@
         <img src="image1.jpg" alt="Intel 1985" />
         <h3>1985 — Intel Innovation</h3>
         <p>Intel continued to push forward with powerful processors, shaping the future of PCs.</p>
+      </div>
+      <div class="timeline-card-horizontal card-above" data-index="4">
+        <img src="image1.jpg" alt="Intel 1993" />
+        <h3>1993 — Pentium Processor</h3>
+        <p>Intel launched the Pentium processor, bringing superscalar architecture to mainstream computing.</p>
+      </div>
+      <div class="timeline-card-horizontal card-below" data-index="5">
+        <img src="image3.jpg" alt="Intel 2006" />
+        <h3>2006 — Core Architecture</h3>
+        <p>Intel introduced Core architecture, revolutionizing multi-core processor design and energy efficiency.</p>
+      </div>
+      <div class="timeline-card-horizontal card-above" data-index="6">
+        <img src="image1.jpg" alt="Intel 2017" />
+        <h3>2017 — Advanced Manufacturing</h3>
+        <p>Intel advanced to 10nm process technology, pushing the boundaries of semiconductor manufacturing.</p>
+      </div>
+      <div class="timeline-card-horizontal card-below" data-index="7">
+        <img src="image3.jpg" alt="Intel 2023" />
+        <h3>2023 — AI & Modern Computing</h3>
+        <p>Intel continues innovation with AI acceleration and advanced processor architectures for modern computing needs.</p>
       </div>
     </div>
     <!-- Mobile: Vertical Timeline -->
@@ -275,6 +311,30 @@
         <img src="image1.jpg" alt="Intel 1985" />
         <h3>1985 — Intel Innovation</h3>
         <p>Intel continued to push forward with powerful processors, shaping the future of PCs.</p>
+      </div>
+      <button class="timeline-node-vertical" data-index="4"><span class="timeline-node-year-vertical">1993</span></button>
+      <div class="timeline-card-vertical" data-index="4">
+        <img src="image1.jpg" alt="Intel 1993" />
+        <h3>1993 — Pentium Processor</h3>
+        <p>Intel launched the Pentium processor, bringing superscalar architecture to mainstream computing.</p>
+      </div>
+      <button class="timeline-node-vertical" data-index="5"><span class="timeline-node-year-vertical">2006</span></button>
+      <div class="timeline-card-vertical" data-index="5">
+        <img src="image3.jpg" alt="Intel 2006" />
+        <h3>2006 — Core Architecture</h3>
+        <p>Intel introduced Core architecture, revolutionizing multi-core processor design and energy efficiency.</p>
+      </div>
+      <button class="timeline-node-vertical" data-index="6"><span class="timeline-node-year-vertical">2017</span></button>
+      <div class="timeline-card-vertical" data-index="6">
+        <img src="image1.jpg" alt="Intel 2017" />
+        <h3>2017 — Advanced Manufacturing</h3>
+        <p>Intel advanced to 10nm process technology, pushing the boundaries of semiconductor manufacturing.</p>
+      </div>
+      <button class="timeline-node-vertical" data-index="7"><span class="timeline-node-year-vertical">2023</span></button>
+      <div class="timeline-card-vertical" data-index="7">
+        <img src="image3.jpg" alt="Intel 2023" />
+        <h3>2023 — AI & Modern Computing</h3>
+        <p>Intel continues innovation with AI acceleration and advanced processor architectures for modern computing needs.</p>
       </div>
     </div>
   </div>
