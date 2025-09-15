@@ -128,14 +128,51 @@
       .timeline-event-horizontal[data-index="6"] { left: 800px; }
       .timeline-event-horizontal[data-index="7"] { left: 920px; }
       @media (max-width: 1200px) {
-        .timeline-event-horizontal[data-index="0"] { left: 13vw; }
-        .timeline-event-horizontal[data-index="1"] { left: 16vw; }
-        .timeline-event-horizontal[data-index="2"] { left: 26vw; }
-        .timeline-event-horizontal[data-index="3"] { left: 36vw; }
-        .timeline-event-horizontal[data-index="4"] { left: 46vw; }
-        .timeline-event-horizontal[data-index="5"] { left: 56vw; }
-        .timeline-event-horizontal[data-index="6"] { left: 66vw; }
-        .timeline-event-horizontal[data-index="7"] { left: 76vw; }
+        .timeline-event-horizontal[data-index="0"] { left: 8vw; }
+        .timeline-event-horizontal[data-index="1"] { left: 14vw; }
+        .timeline-event-horizontal[data-index="2"] { left: 21vw; }
+        .timeline-event-horizontal[data-index="3"] { left: 29vw; }
+        .timeline-event-horizontal[data-index="4"] { left: 37vw; }
+        .timeline-event-horizontal[data-index="5"] { left: 45vw; }
+        .timeline-event-horizontal[data-index="6"] { left: 53vw; }
+        .timeline-event-horizontal[data-index="7"] { left: 61vw; }
+      }
+      
+      /* Improved tablet/iPad support - ensure timeline is scrollable horizontally */
+      @media (min-width: 901px) and (max-width: 1200px) {
+        .timeline-horizontal {
+          overflow-x: auto !important;
+          overflow-y: visible !important;
+          min-width: 800px;
+          padding-bottom: 20px;
+          scroll-behavior: smooth;
+        }
+        .timeline-section {
+          overflow-x: auto !important;
+          padding: 3rem 1rem;
+        }
+        /* Ensure all timeline events are accessible and properly spaced */
+        .timeline-event-horizontal[data-index="7"] { 
+          left: min(61vw, calc(100vw - 140px)) !important; 
+        }
+        .timeline-event-horizontal[data-index="6"] { 
+          left: min(53vw, calc(100vw - 200px)) !important; 
+        }
+        /* Enhanced touch/scroll support for tablets */
+        .timeline-horizontal::-webkit-scrollbar {
+          height: 8px;
+        }
+        .timeline-horizontal::-webkit-scrollbar-track {
+          background: #f1f1f1;
+          border-radius: 4px;
+        }
+        .timeline-horizontal::-webkit-scrollbar-thumb {
+          background: #0071C5;
+          border-radius: 4px;
+        }
+        .timeline-horizontal::-webkit-scrollbar-thumb:hover {
+          background: #004e91;
+        }
       }
       .timeline-dot-horizontal {
         position: absolute;
