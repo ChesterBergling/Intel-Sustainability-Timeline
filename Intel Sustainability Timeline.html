@@ -228,6 +228,19 @@
       .timeline-vertical { display: none !important; }
     }
 
+    /* TABLET HORIZONTAL TIMELINE WITH SCROLLING */
+    @media (min-width: 901px) and (max-width: 1200px) {
+      .timeline-section {
+        overflow-x: auto !important;
+        overflow-y: visible !important;
+        padding: 3rem 1rem !important;
+      }
+      .timeline-horizontal {
+        min-width: 1100px !important; /* Ensure minimum width for all events */
+        overflow: visible !important;
+      }
+    }
+
     /* MOBILE/TABLET VERTICAL TIMELINE */
     @media (max-width: 900px) {
       html, body {
