@@ -1,7 +1,19 @@
-/* CSS for card styles */
-.card {
-    width: 80vw; /* Updated width for iPad/tablet screens */
-    height: 190px; /* Updated height for iPad/tablet screens */
-}
+<style>
+  .card {
+    /* Styles for iPad/tablet */
+    width: 80vw;
+    min-height: 190px;
+  }
 
-/* Add any other relevant styles here */
+  @media (max-width: 768px) {
+    .card {
+      /* Styles for mobile */
+      width: 70vw;
+      min-height: 190px;
+    }
+  }
+</style>
+
+<div class="card">
+  <!-- Card content here -->
+</div>
