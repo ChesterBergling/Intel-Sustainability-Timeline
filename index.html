@@ -801,3 +801,29 @@
   </footer>
 </body>
 </html>
+<style>
+/* RTL overrides */
+html[dir="rtl"] body,
+html[dir="rtl"] header,
+html[dir="rtl"] nav,
+html[dir="rtl"] section,
+html[dir="rtl"] footer {
+  direction: rtl;
+}
+html[dir="rtl"] .timeline-vertical::before { left: unset; right: 40px; }
+html[dir="rtl"] .timeline-dot-vertical { margin-left: 14px; margin-right: 30px; }
+html[dir="rtl"] .timeline-card { text-align: right; flex-direction: row-reverse !important; }
+html[dir="rtl"] .card-text,
+html[dir="rtl"] .timeline-title,
+html[dir="rtl"] .hero { text-align: right; }
+</style>
+<script>
+  // Language and direction auto-detect
+  document.addEventListener('DOMContentLoaded', function () {
+    var lang = navigator.language || navigator.userLanguage || "en";
+    var rtlLangs = ["ar", "he", "fa", "ur"];
+    var isRTL = rtlLangs.some(function(code) { return lang.startsWith(code); });
+    document.documentElement.lang = lang;
+    document.documentElement.dir = isRTL ? "rtl" : "ltr";
+  });
+</script>
