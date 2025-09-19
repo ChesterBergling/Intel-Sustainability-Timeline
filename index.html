@@ -818,6 +818,21 @@
 </script>
   <style>
     <style>
+    <script>
+  // Remove or comment out the auto-detect script if you want manual control only
+  // document.addEventListener('DOMContentLoaded', function () { ... });
+
+  document.getElementById('toggle-rtl-btn').addEventListener('click', function () {
+    var html = document.documentElement;
+    if(html.dir === "rtl") {
+      html.dir = "ltr";
+      this.textContent = "Switch RTL";
+    } else {
+      html.dir = "rtl";
+      this.textContent = "Switch LTR";
+    }
+  });
+</script>
 /* General RTL overrides */
 html[dir="rtl"] * { box-sizing: border-box; }
 
@@ -854,6 +869,7 @@ html[dir="rtl"] .timeline-event-horizontal[data-index="6"] { right: 780px !impor
 html[dir="rtl"] .timeline-event-horizontal[data-index="7"] { right: 970px !important; }
 html[dir="rtl"] .timeline-dot-horizontal { left: 50% !important; right: unset !important; }
 html[dir="rtl"] .timeline-date-horizontal { left: 50% !important; right: unset !important; text-align: right !important; }
+  <button id="toggle-rtl-btn" style="position:fixed;top:10px;right:10px;z-index:999;padding:0.7em 1.2em;font-size:1em;">Switch RTL</button>                                                              
 </body>
 </html>
 
