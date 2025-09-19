@@ -1,16 +1,45 @@
 !DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
+  <meta charset="UTF-8">
+  <title>RTL Language Toggle Demo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Default Bootstrap LTR CSS -->
+  <link id="bootstrap-css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+    integrity="sha384-ENjdO4Dr2bkBIFxQpeoYz1FZChtbZ9Kp3yhhLhZl0IB1zEG6UgrpT4f0Cu8K4QvZ" crossorigin="anonymous">
+</head>
+<body>
+  <button id="toggle-rtl-btn"
+    style="position:fixed;top:10px;right:10px;z-index:999;padding:0.7em 1.2em;font-size:1em;background:#0071C5;color:#fff;border:none;border-radius:6px;cursor:pointer;">
+    Switch to Arabic (RTL)
+  </button>
+
+  <div class="container mt-5">
+    <h1 class="header-title">Intel Sustainability</h1>
+    <p>This content will switch direction and language when you click the button.</p>
+  </div>
+
   <script>
-    // Dynamically load Bootstrap RTL CSS if page is RTL
-    document.addEventListener('DOMContentLoaded', function() {
-      if (document.documentElement.dir === "rtl") {
-        var link = document.createElement('link');
-        link.rel = 'stylesheet';
-        link.href = 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.rtl.min.css';
-        link.integrity = 'sha384-CfCrinSRH2IR6a4e6fy2q6ioOX7O6Mtm1L9vRvFZ1trBncWmMePhzvafv7oIcWiW';
-        link.crossOrigin = 'anonymous';
-        document.head.appendChild(link);
+    const btn = document.getElementById('toggle-rtl-btn');
+    const html = document.documentElement;
+    const bootstrapCSS = document.getElementById('bootstrap-css');
+
+    btn.addEventListener('click', function () {
+      if (html.dir === "ltr") {
+        html.dir = "rtl";
+        html.lang = "ar";
+        // Switch to RTL Bootstrap
+        bootstrapCSS.href = "https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.rtl.min.css";
+        btn.textContent = "Switch to English (LTR)";
+      } else {
+        html.dir = "ltr";
+        html.lang = "en";
+        // Switch to LTR Bootstrap
+        bootstrapCSS.href = "https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css";
+        btn.textContent = "Switch to Arabic (RTL)";
+      }
+    });
+  </script>
   <style>
       body { margin: 0; font-family: Arial, sans-serif; background: #fff; color: #222; }
     header { background: #0071C5; color: #fff; padding: 1rem 2rem; text-align: center; }
