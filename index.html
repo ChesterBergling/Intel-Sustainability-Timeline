@@ -6,6 +6,20 @@
   <title>Intel Timeline Eco-Tech</title>
   <style>
     body { margin: 0; font-family: Arial, sans-serif; background: #fff; color: #222; }
+     <button id="toggle-rtl-btn">Switch RTL</button>
+  <!-- ...rest of your page... -->
+
+  <script>
+    document.getElementById('toggle-rtl-btn').addEventListener('click', function () {
+      var html = document.documentElement;
+      if(html.dir === "rtl") {
+        html.dir = "ltr";
+        this.textContent = "Switch RTL";
+      } else {
+        html.dir = "rtl";
+        this.textContent = "Switch LTR";
+      }
+    });
     header { background: #0071C5; color: #fff; padding: 1rem 2rem; text-align: center; }
     .header-title { margin: 0; font-size: 2rem; font-weight: bold; text-align: center; }
     nav { margin-top: 0.5rem; }
