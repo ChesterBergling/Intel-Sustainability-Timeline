@@ -815,61 +815,39 @@
     </form>
     <p>&copy; 2025 Intel Corporation | Eco-Tech Vision</p>
   </footer>
-</script>
+    <meta charset="UTF-8">
+  <title>RTL Toggle Example</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <!-- Add any other <style> blocks you need here -->
+<body>
+  <!-- Toggle Button: Place at the top of body -->
+  <button id="toggle-rtl-btn" style="position:fixed;top:10px;right:10px;z-index:999;padding:0.7em 1.2em;font-size:1em;background:#0071C5;color:#fff;border:none;border-radius:6px;cursor:pointer;">Switch RTL</button>
+
+  <!-- Your page content goes here -->
+
+  <!-- RTL CSS OVERRIDES -->
   <style>
-    <style>
-    <script>
-  // Remove or comment out the auto-detect script if you want manual control only
-  // document.addEventListener('DOMContentLoaded', function () { ... });
+    /* General RTL overrides */
+    html[dir="rtl"] * { box-sizing: border-box; }
 
-  document.getElementById('toggle-rtl-btn').addEventListener('click', function () {
-    var html = document.documentElement;
-    if(html.dir === "rtl") {
-      html.dir = "ltr";
-      this.textContent = "Switch RTL";
-    } else {
-      html.dir = "rtl";
-      this.textContent = "Switch LTR";
-    }
-  });
-<button id="toggle-rtl-btn" style="position:fixed;top:10px;right:10px;z-index:999;padding:0.7em 1.2em;font-size:1em;">Switch RTL</button>                                                           
-</script>
-/* General RTL overrides */
-html[dir="rtl"] * { box-sizing: border-box; }
+    /* Bootstrap grid: flip columns */
+    html[dir="rtl"] .row { flex-direction: row-reverse !important; }
+    html[dir="rtl"] .col,
+    html[dir="rtl"] [class^="col-"] { text-align: right; }
 
-/* Bootstrap grid: flip columns */
-html[dir="rtl"] .row { flex-direction: row-reverse !important; }
-html[dir="rtl"] .col,
-html[dir="rtl"] [class^="col-"] { text-align: right; }
-
-/* Timeline vertical: flip dot, card, and marker */
-html[dir="rtl"] .timeline-vertical { flex-direction: column-reverse !important; }
-html[dir="rtl"] .timeline-vertical::before { left: unset !important; right: 40px !important; }
-html[dir="rtl"] .timeline-dot-vertical { margin-left: 14px !important; margin-right: 30px !important; }
-html[dir="rtl"] .timeline-card { flex-direction: row-reverse !important; text-align: right !important; }
-html[dir="rtl"] .timeline-title,
-html[dir="rtl"] .card-text,
-html[dir="rtl"] .form-label,
-html[dir="rtl"] .form-text,
-html[dir="rtl"] label { text-align: right !important; }
-html[dir="rtl"] .form-control,
-html[dir="rtl"] input,
-html[dir="rtl"] textarea { text-align: right; }
-
-/* Timeline horizontal: reverse event order and flip left/right */
-html[dir="rtl"] .timeline-horizontal { flex-direction: row-reverse !important; }
-html[dir="rtl"] .timeline-bar { left: unset !important; right: 80px !important; }
-html[dir="rtl"] .timeline-event-horizontal { left: unset !important; }
-html[dir="rtl"] .timeline-event-horizontal[data-index="0"] { right: 80px !important; }
-html[dir="rtl"] .timeline-event-horizontal[data-index="1"] { right: 180px !important; }
-html[dir="rtl"] .timeline-event-horizontal[data-index="2"] { right: 300px !important; }
-html[dir="rtl"] .timeline-event-horizontal[data-index="3"] { right: 420px !important; }
-html[dir="rtl"] .timeline-event-horizontal[data-index="4"] { right: 540px !important; }
-html[dir="rtl"] .timeline-event-horizontal[data-index="5"] { right: 660px !important; }
-html[dir="rtl"] .timeline-event-horizontal[data-index="6"] { right: 780px !important; }
-html[dir="rtl"] .timeline-event-horizontal[data-index="7"] { right: 970px !important; }
-html[dir="rtl"] .timeline-dot-horizontal { left: 50% !important; right: unset !important; }
-html[dir="rtl"] .timeline-date-horizontal { left: 50% !important; right: unset !important; text-align: right !important; }                                                              
+    /* Timeline vertical: flip dot, card, and marker */
+    html[dir="rtl"] .timeline-vertical { flex-direction: column-reverse !important; }
+    html[dir="rtl"] .timeline-vertical::before { left: unset !important; right: 40px !important; }
+    html[dir="rtl"] .timeline-dot-vertical { margin-left: 14px !important; margin-right: 30px !important; }
+    html[dir="rtl"] .timeline-card { flex-direction: row-reverse !important; text-align: right !important; }
+    html[dir="rtl"] .timeline-title,
+    html[dir="rtl"] .card-text,
+    html[dir="rtl"] .form-label,
+    html[dir="rtl"] .form-text,
+    html[dir="rtl"] label { text-align: right !important; }
+    html[dir="rtl"] .form-control,
+    html[dir="rtl"] input,
+    html[dir="rtl"] textarea { text-align: right; }
 </body>
 </html>
 
