@@ -2,23 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>RTL Toggle Demo</title>
-</head>
-<body>
-  <button id="toggle-rtl-btn" style="position:fixed;top:10px;right:10px;">Switch RTL</button>
-  <p>This is some demo text.</p>
-  <script>
-    document.getElementById('toggle-rtl-btn').addEventListener('click', function () {
-      var html = document.documentElement;
-      if(html.dir === "rtl") {
-        html.dir = "ltr";
-        this.textContent = "Switch RTL";
-      } else {
-        html.dir = "rtl";
-        this.textContent = "Switch LTR";
-      }
-    });
-  </script>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Intel Timeline Eco-Tech</title>
+  <style>
+      body { margin: 0; font-family: Arial, sans-serif; background: #fff; color: #222; }
     header { background: #0071C5; color: #fff; padding: 1rem 2rem; text-align: center; }
     .header-title { margin: 0; font-size: 2rem; font-weight: bold; text-align: center; }
     nav { margin-top: 0.5rem; }
@@ -507,6 +494,37 @@
       margin-top: 0;
       border-top: 2px solid #0071C5;
     }
+
+    /* --- RTL OVERRIDES --- */
+    html[dir="rtl"] * { box-sizing: border-box; }
+    html[dir="rtl"] .row { flex-direction: row-reverse !important; }
+    html[dir="rtl"] .col,
+    html[dir="rtl"] [class^="col-"] { text-align: right; }
+    html[dir="rtl"] .timeline-vertical { flex-direction: column-reverse !important; }
+    html[dir="rtl"] .timeline-vertical::before { left: unset !important; right: 40px !important; }
+    html[dir="rtl"] .timeline-dot-vertical { margin-left: 14px !important; margin-right: 30px !important; }
+    html[dir="rtl"] .timeline-card { flex-direction: row-reverse !important; text-align: right !important; }
+    html[dir="rtl"] .timeline-title,
+    html[dir="rtl"] .card-text,
+    html[dir="rtl"] .form-label,
+    html[dir="rtl"] .form-text,
+    html[dir="rtl"] label { text-align: right !important; }
+    html[dir="rtl"] .form-control,
+    html[dir="rtl"] input,
+    html[dir="rtl"] textarea { text-align: right; }
+    html[dir="rtl"] .timeline-horizontal { flex-direction: row-reverse !important; }
+    html[dir="rtl"] .timeline-bar { left: unset !important; right: 80px !important; }
+    html[dir="rtl"] .timeline-event-horizontal { left: unset !important; }
+    html[dir="rtl"] .timeline-event-horizontal[data-index="0"] { right: 80px !important; }
+    html[dir="rtl"] .timeline-event-horizontal[data-index="1"] { right: 180px !important; }
+    html[dir="rtl"] .timeline-event-horizontal[data-index="2"] { right: 300px !important; }
+    html[dir="rtl"] .timeline-event-horizontal[data-index="3"] { right: 420px !important; }
+    html[dir="rtl"] .timeline-event-horizontal[data-index="4"] { right: 540px !important; }
+    html[dir="rtl"] .timeline-event-horizontal[data-index="5"] { right: 660px !important; }
+    html[dir="rtl"] .timeline-event-horizontal[data-index="6"] { right: 780px !important; }
+    html[dir="rtl"] .timeline-event-horizontal[data-index="7"] { right: 970px !important; }
+    html[dir="rtl"] .timeline-dot-horizontal { left: 50% !important; right: unset !important; }
+    html[dir="rtl"] .timeline-date-horizontal { left: 50% !important; right: unset !important; text-align: right !important; }
   </style>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -586,6 +604,20 @@
       }
       setupTimeline();
       window.addEventListener('resize', setupTimeline);
+
+      // RTL toggle script (added)
+      if (document.getElementById('toggle-rtl-btn')) {
+        document.getElementById('toggle-rtl-btn').addEventListener('click', function () {
+          var html = document.documentElement;
+          if(html.dir === "rtl") {
+            html.dir = "ltr";
+            this.textContent = "Switch RTL";
+          } else {
+            html.dir = "rtl";
+            this.textContent = "Switch LTR";
+          }
+        });
+      }
     });
   </script>
 </head>
@@ -861,6 +893,24 @@
     html[dir="rtl"] .form-control,
     html[dir="rtl"] input,
     html[dir="rtl"] textarea { text-align: right; }
+    /* Add toggle button JS for last body */
+    </style>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var btn = document.getElementById('toggle-rtl-btn');
+      if (btn) {
+        btn.addEventListener('click', function () {
+          var html = document.documentElement;
+          if(html.dir === "rtl") {
+            html.dir = "ltr";
+            this.textContent = "Switch RTL";
+          } else {
+            html.dir = "rtl";
+            this.textContent = "Switch LTR";
+          }
+        });
+      }
+    });
+  </script>
 </body>
 </html>
-
