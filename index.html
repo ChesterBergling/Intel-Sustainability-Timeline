@@ -832,6 +832,61 @@ html[dir="rtl"] .card-text,
 html[dir="rtl"] .timeline-title,
 html[dir="rtl"] .hero { text-align: right; }
 </style>
+  <style>
+/* General RTL overrides */
+html[dir="rtl"] * {
+  box-sizing: border-box;
+}
+
+/* Bootstrap grid: flip columns */
+html[dir="rtl"] .row {
+  flex-direction: row-reverse !important;
+}
+html[dir="rtl"] .col,
+html[dir="rtl"] [class^="col-"] {
+  text-align: right;
+}
+
+/* Timeline specific: reverse flex and adjust markers */
+html[dir="rtl"] .timeline {
+  direction: rtl;
+}
+html[dir="rtl"] .timeline-vertical {
+  flex-direction: column-reverse !important;
+}
+html[dir="rtl"] .timeline-card {
+  flex-direction: row-reverse !important;
+  text-align: right;
+}
+html[dir="rtl"] .timeline-dot-vertical {
+  margin-right: 30px !important;
+  margin-left: 14px !important;
+}
+html[dir="rtl"] .timeline-vertical::before {
+  left: unset !important;
+  right: 40px !important;
+}
+html[dir="rtl"] .timeline-title,
+html[dir="rtl"] .card-text,
+html[dir="rtl"] .form-label,
+html[dir="rtl"] .form-text,
+html[dir="rtl"] label {
+  text-align: right !important;
+}
+
+/* Form controls */
+html[dir="rtl"] .form-control {
+  text-align: right;
+}
+html[dir="rtl"] input,
+html[dir="rtl"] textarea {
+  text-align: right;
+}
+
+/* Optional: flip chevrons, arrows, icons (example for FontAwesome) */
+html[dir="rtl"] .fa-chevron-right { transform: scaleX(-1); }
+html[dir="rtl"] .fa-arrow-right { transform: scaleX(-1); }
+</style>
 <script>
   document.addEventListener('DOMContentLoaded', function () {
     var lang = navigator.language || navigator.userLanguage || "en";
