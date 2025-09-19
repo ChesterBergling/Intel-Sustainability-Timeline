@@ -2,13 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Intel Timeline Eco-Tech</title>
-  <style>
-    body { margin: 0; font-family: Arial, sans-serif; background: #fff; color: #222; }
-     <button id="toggle-rtl-btn">Switch RTL</button>
-  <!-- ...rest of your page... -->
-
+  <title>RTL Toggle Demo</title>
+</head>
+<body>
+  <button id="toggle-rtl-btn" style="position:fixed;top:10px;right:10px;">Switch RTL</button>
+  <p>This is some demo text.</p>
   <script>
     document.getElementById('toggle-rtl-btn').addEventListener('click', function () {
       var html = document.documentElement;
@@ -20,6 +18,7 @@
         this.textContent = "Switch LTR";
       }
     });
+  </script>
     header { background: #0071C5; color: #fff; padding: 1rem 2rem; text-align: center; }
     .header-title { margin: 0; font-size: 2rem; font-weight: bold; text-align: center; }
     nav { margin-top: 0.5rem; }
