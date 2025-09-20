@@ -910,7 +910,48 @@
         margin-top: 0 !important;
       }
     }
-    /* ...existing code... */
+
+    /* BEGINNER TIP: Remove boundaries and extend timeline for all screens */
+    .timeline-section {
+      /* Remove min-height and height limits, use large padding for space */
+      min-height: unset !important;
+      height: auto !important;
+      padding-top: 120px !important;   /* lots of space above timeline */
+      padding-bottom: 200px !important;/* lots of space below timeline */
+      background: #F5F5F5;
+      width: 100%;
+      position: relative;
+      overflow: visible !important;    /* allow timeline to extend */
+    }
+    .timeline-vertical {
+      gap: 8rem; /* even more space between cards */
+      margin-bottom: 160px; /* more margin before footer */
+    }
+    .timeline-event-vertical {
+      margin-bottom: 16px; /* more space between plot points */
+    }
+    /* Remove any max-height or height limits from media queries for .timeline-section and .timeline-vertical */
+    @media (max-width: 1200px), (max-width: 1300px) and (max-height: 700px), (max-width: 767px),
+           (device-width: 414px) and (device-height: 896px),
+           (device-width: 390px) and (device-height: 844px),
+           (device-width: 412px) and (device-height: 915px),
+           (max-width: 420px) and (max-height: 920px),
+           (device-width: 360px) and (device-height: 740px),
+           (max-width: 370px) and (max-height: 750px) {
+      .timeline-section {
+        min-height: unset !important;
+        height: auto !important;
+        padding-top: 120px !important;
+        padding-bottom: 200px !important;
+        overflow: visible !important;
+      }
+      .timeline-vertical {
+        max-height: unset !important;
+        height: auto !important;
+        gap: 8rem !important;
+        margin-bottom: 160px !important;
+      }
+    }
   </style>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
