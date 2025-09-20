@@ -1011,6 +1011,17 @@
         left: 920px !important; /* Move 2023 card slightly closer to 2023 */
       }
     }
+
+    /* On iPhones only, increase vertical scroll by 10% */
+    /* Beginner tip: This makes the timeline taller for iPhones */
+    @media (device-width: 414px) and (device-height: 896px), /* iPhone XR */
+           (device-width: 390px) and (device-height: 844px) { /* iPhone 12 Pro */
+      .timeline-vertical {
+        max-height: 110vh !important;
+        height: 110vh !important;
+        /* ...existing code... */
+      }
+    }
   </style>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -1207,7 +1218,7 @@
       </div>
     </div>
     <div class="timeline-vertical">
-      <!-- Events always in chronological order (first at top, last at bottom) -->
+      <!-- Events in chronological order: earliest at top, latest at bottom -->
       <div class="timeline-event-vertical" tabindex="0" aria-label="1968" data-label="1968">
         <div class="timeline-dot-vertical"></div>
         <div style="flex: 1;">
@@ -1247,7 +1258,6 @@
           </div>
         </div>
       </div>
-      <!-- 1985 Card -->
       <div class="timeline-event-vertical" tabindex="0" aria-label="1985" data-label="1985">
         <div class="timeline-dot-vertical"></div>
         <div style="flex: 1;">
@@ -1261,7 +1271,6 @@
           </div>
         </div>
       </div>
-      <!-- 2006 Card -->
       <div class="timeline-event-vertical" tabindex="0" aria-label="2006" data-label="2006">
         <div class="timeline-dot-vertical"></div>
         <div style="flex: 1;">
@@ -1275,7 +1284,6 @@
           </div>
         </div>
       </div>
-      <!-- 2020 Card -->
       <div class="timeline-event-vertical" tabindex="0" aria-label="2020" data-label="2020">
         <div class="timeline-dot-vertical"></div>
         <div style="flex: 1;">
@@ -1289,7 +1297,6 @@
           </div>
         </div>
       </div>
-      <!-- 2022 Card -->
       <div class="timeline-event-vertical" tabindex="0" aria-label="2022" data-label="2022">
         <div class="timeline-dot-vertical"></div>
         <div style="flex: 1;">
@@ -1303,7 +1310,6 @@
           </div>
         </div>
       </div>
-      <!-- 2023 Card -->
       <div class="timeline-event-vertical" tabindex="0" aria-label="2023" data-label="2023">
         <div class="timeline-dot-vertical"></div>
         <div style="flex: 1;">
