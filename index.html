@@ -954,6 +954,30 @@
         margin-bottom: 160px !important;
       }
     }
+
+    /* Move footer up by 10% on all non-desktop devices */
+    @media (max-width: 1200px), (max-width: 1300px) and (max-height: 700px), (max-width: 767px),
+         (device-width: 414px) and (device-height: 896px),
+         (device-width: 390px) and (device-height: 844px),
+         (device-width: 412px) and (device-height: 915px),
+         (max-width: 420px) and (max-height: 920px),
+         (device-width: 360px) and (device-height: 740px),
+         (max-width: 370px) and (max-height: 750px) {
+      footer {
+        /* Move footer up by 10% of viewport height */
+        position: relative !important;
+        bottom: 10vh !important;
+        margin-bottom: 0 !important;
+      }
+    }
+
+    /* Timeline start position for LTR and RTL languages */
+    html[dir="ltr"] .timeline-vertical {
+      align-items: flex-start !important; /* Start on left for LTR */
+    }
+    html[dir="rtl"] .timeline-vertical {
+      align-items: flex-end !important;   /* Start on right for RTL */
+    }
   </style>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
