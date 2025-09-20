@@ -848,20 +848,20 @@
       left: 0;
     }
 
-    /* Make timeline longer and cards spaced out */
+    /* Make timeline longer and cards spaced out for beginners */
     .timeline-section {
-      min-height: 140vh;
-      height: 140vh;
-      padding-bottom: 60px;
-      padding-top: 40px;
+      min-height: 161vh; /* 15% longer than 140vh */
+      height: 161vh;
+      padding-bottom: 80px; /* more space before footer */
+      padding-top: 50px;    /* more space above timeline */
       overflow-y: auto;
     }
     .timeline-vertical {
-      gap: 3.5rem;
-      margin-bottom: 60px;
+      gap: 5rem; /* increase space between cards */
+      margin-bottom: 80px; /* more margin before footer */
     }
     .timeline-event-vertical {
-      margin-bottom: 0;
+      margin-bottom: 0; /* use gap for spacing */
     }
     .timeline-card {
       margin-bottom: 0 !important;
