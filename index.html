@@ -39,7 +39,15 @@
         text-decoration: underline !important;
       }
     }
-    .timeline-section { padding: 3rem 2rem; background: #F5F5F5; width: 100%; position:relative; min-height: 90vh !important; overflow: visible !important; }
+    .timeline-section { 
+      padding: 3rem 2rem; 
+      background: #F5F5F5; 
+      width: 100%; 
+      position:relative; 
+      min-height: 90vh !important; 
+      overflow: visible !important; 
+      margin-top: 2rem; /* Add top margin so timeline starts below header */
+    }
     .timeline-title { 
       color: #0071C5; 
       font-size: 2rem; 
@@ -62,6 +70,7 @@
       padding-bottom: 0;
       justify-content: center;
       align-items: center;
+      margin-top: 1rem; /* Add space below header */
     }
     .timeline-vertical::before {
       content: "";
@@ -613,6 +622,42 @@
     html[dir="rtl"] .timeline-vertical {
       flex-direction: column !important;
     }
+
+    /* Prevent timeline from running past the header */
+    .timeline-section {
+      /* Add top margin so timeline starts below header */
+      margin-top: 2rem;
+      /* ...existing code... */
+    }
+    .timeline-vertical {
+      margin-top: 1rem; /* Add space below header */
+      /* ...existing code... */
+    }
+
+    /* Multiply vertical scroll area by 300% on non-desktop devices */
+    @media (max-width: 1200px) {
+      .timeline-section {
+        height: 300vh !important; /* 300% vertical scroll */
+        min-height: 300vh !important;
+        overflow-y: auto !important;
+      }
+      .timeline-vertical {
+        height: 300vh !important;
+        min-height: 300vh !important;
+        overflow-y: auto !important;
+      }
+    }
+
+    /* Ensure cards fit on the screen regardless of language */
+    @media (max-width: 1200px) {
+      .timeline-card {
+        max-width: 98vw !important;
+        width: 98vw !important;
+        box-sizing: border-box;
+        margin-left: auto !important;
+        margin-right: auto !important;
+      }
+    }
     /* ...existing code... */
   </style>
   <script>
@@ -1044,9 +1089,6 @@
     observer.observe(document.documentElement, { attributes: true });
     // Also check every second in case Google Translate changes it in a way MutationObserver misses
     setInterval(updateRTL, 1000);
-  </script>
-</body>
-</html>
   </script>
 </body>
 </html>
