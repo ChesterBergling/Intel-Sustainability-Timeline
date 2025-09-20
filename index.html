@@ -1,9 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" dir="rtl" 
+<html lang="en" dir="rtl">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Intel Timeline Eco-Tech</title>
+  <!-- Bootstrap RTL CSS: This makes the page layout right-to-left and adds Bootstrap styles -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css" integrity="sha384-dpuaG1suU0eT09tx5plTaGMLBsfDLzUCCUXOY2j/LSvXYuG6Bqs43ALlhIqAJVRb" crossorigin="anonymous">
   <style>
     body { margin: 0; font-family: Arial, sans-serif; background: #fff; color: #222; }
     header { background: #0071C5; color: #fff; padding: 1rem 2rem; text-align: center; }
@@ -38,7 +40,15 @@
       }
     }
     .timeline-section { padding: 3rem 2rem; background: #F5F5F5; width: 100%; position:relative; min-height: 90vh !important; overflow: visible !important; }
-    .timeline-title { color: #0071C5; font-size: 2rem; margin-bottom: 2rem; text-align: center; }
+    .timeline-title { 
+      color: #0071C5; 
+      font-size: 2rem; 
+      margin-bottom: 2rem; 
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
+      display: block; /* Ensures centering works for div */
+    }
     .timeline-horizontal { display: none !important; }
     .timeline-bar { display: none !important; }
     .timeline-vertical {
@@ -50,6 +60,8 @@
       margin: 0 auto;
       min-height: 0;
       padding-bottom: 0;
+      justify-content: center;
+      align-items: center;
     }
     .timeline-vertical::before {
       content: "";
@@ -425,8 +437,13 @@
       }
     }
     html, body {
+      height: 100%;
+      min-height: 100vh;
       overflow-x: hidden !important;
       max-width: 100vw !important;
+    }
+    body {
+      min-height: 100vh;
     }
 
     /* --- Special media query for Nest Hub Max --- */
@@ -493,6 +510,113 @@
       box-shadow: 0 -2px 10px rgba(0,113,197,0.10);
       margin-top: 0;
       border-top: 2px solid #0071C5;
+    }
+
+    /* Center the timeline title (keep color and font-size unchanged) */
+    .timeline-title {
+      /* ...existing color, font-size, margin-bottom... */
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
+      display: block;
+    }
+
+    /* Center all titles for beginners */
+    .timeline-title,
+    .header-title,
+    .hero h2,
+    footer p {
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
+      display: block;
+    }
+
+    /* RTL horizontal timeline: align to right, same width as LTR */
+    html[dir="rtl"] .timeline-horizontal {
+      flex-direction: row-reverse !important;
+      right: 0 !important; /* Align timeline to right edge */
+      left: auto !important;
+      width: 100vw !important;
+      max-width: 1200px !important;
+      margin-left: auto !important;
+      margin-right: auto !important;
+    }
+    html[dir="rtl"] .timeline-bar {
+      right: 0 !important; /* Bar starts at right edge */
+      left: auto !important;
+      width: calc(100% - 160px) !important;
+      background: linear-gradient(90deg, #4CAF50, #0071C5);
+    }
+
+    /* RTL CSS OVERRIDES */
+    /* General RTL overrides */
+    html[dir="rtl"] * { box-sizing: border-box; }
+
+    /* Bootstrap grid: flip columns */
+    html[dir="rtl"] .row { flex-direction: row-reverse !important; }
+    html[dir="rtl"] .col,
+    html[dir="rtl"] [class^="col-"] { text-align: right; }
+
+    /* Timeline vertical: flip dot, card, and marker */
+    html[dir="rtl"] .timeline-vertical { flex-direction: column !important; }
+    html[dir="rtl"] .timeline-vertical::before { left: unset !important; right: 40px !important; }
+    html[dir="rtl"] .timeline-dot-vertical { margin-left: 14px !important; margin-right: 30px !important; }
+    html[dir="rtl"] .timeline-card { flex-direction: row-reverse !important; text-align: right !important; }
+
+    /* RTL overrides for horizontal timeline (beginner-friendly) */
+    html[dir="rtl"] .timeline-horizontal {
+      flex-direction: row-reverse !important; /* Flip timeline direction */
+    }
+    html[dir="rtl"] .timeline-bar {
+      left: unset !important;
+      right: 80px !important; /* Flip bar position */
+      background: linear-gradient(90deg, #4CAF50, #0071C5); /* Flip gradient direction */
+    }
+    /* Flip event positions for RTL */
+    html[dir="rtl"] .timeline-event-horizontal[data-index="0"] { right: 80px !important; left: unset !important; }
+    html[dir="rtl"] .timeline-event-horizontal[data-index="1"] { right: 180px !important; left: unset !important; }
+    html[dir="rtl"] .timeline-event-horizontal[data-index="2"] { right: 300px !important; left: unset !important; }
+    html[dir="rtl"] .timeline-event-horizontal[data-index="3"] { right: 420px !important; left: unset !important; }
+    html[dir="rtl"] .timeline-event-horizontal[data-index="4"] { right: 540px !important; left: unset !important; }
+    html[dir="rtl"] .timeline-event-horizontal[data-index="5"] { right: 660px !important; left: unset !important; }
+    html[dir="rtl"] .timeline-event-horizontal[data-index="6"] { right: 780px !important; left: unset !important; }
+    html[dir="rtl"] .timeline-event-horizontal[data-index="7"] { right: 970px !important; left: unset !important; }
+    /* Flip card alignment for RTL */
+    html[dir="rtl"] .timeline-card {
+      flex-direction: row-reverse !important;
+      text-align: right !important;
+    }
+
+    /* RTL overrides for horizontal timeline (make sure timeline is visible and same width as LTR) */
+    html[dir="rtl"] .timeline-horizontal {
+      flex-direction: row-reverse !important; /* Flip timeline direction */
+      left: 0 !important; /* Always start at left edge */
+      right: auto !important;
+      width: 100vw !important; /* Take up full viewport width */
+      max-width: 1200px !important; /* Same as LTR */
+      margin-left: auto !important;
+      margin-right: auto !important;
+    }
+    html[dir="rtl"] .timeline-bar {
+      left: 0 !important; /* Bar starts at left edge */
+      right: auto !important;
+      width: calc(100% - 160px) !important; /* Same as LTR */
+      background: linear-gradient(90deg, #4CAF50, #0071C5); /* Flip gradient direction */
+    }
+    /* Flip event positions for RTL, but keep them visible */
+    html[dir="rtl"] .timeline-event-horizontal[data-index="0"] { right: 80px !important; left: auto !important; }
+    html[dir="rtl"] .timeline-event-horizontal[data-index="1"] { right: 180px !important; left: auto !important; }
+    html[dir="rtl"] .timeline-event-horizontal[data-index="2"] { right: 300px !important; left: auto !important; }
+    html[dir="rtl"] .timeline-event-horizontal[data-index="3"] { right: 420px !important; left: auto !important; }
+    html[dir="rtl"] .timeline-event-horizontal[data-index="4"] { right: 540px !important; left: auto !important; }
+    html[dir="rtl"] .timeline-event-horizontal[data-index="5"] { right: 660px !important; left: auto !important; }
+    html[dir="rtl"] .timeline-event-horizontal[data-index="6"] { right: 780px !important; left: auto !important; }
+    html[dir="rtl"] .timeline-event-horizontal[data-index="7"] { right: 970px !important; left: auto !important; }
+    /* Flip card alignment for RTL */
+    html[dir="rtl"] .timeline-card {
+      flex-direction: row-reverse !important;
+      text-align: right !important;
     }
   </style>
   <script>
@@ -836,18 +960,94 @@
     html[dir="rtl"] [class^="col-"] { text-align: right; }
 
     /* Timeline vertical: flip dot, card, and marker */
-    html[dir="rtl"] .timeline-vertical { flex-direction: column-reverse !important; }
+    html[dir="rtl"] .timeline-vertical { flex-direction: column !important; }
     html[dir="rtl"] .timeline-vertical::before { left: unset !important; right: 40px !important; }
     html[dir="rtl"] .timeline-dot-vertical { margin-left: 14px !important; margin-right: 30px !important; }
     html[dir="rtl"] .timeline-card { flex-direction: row-reverse !important; text-align: right !important; }
-    html[dir="rtl"] .timeline-title,
-    html[dir="rtl"] .card-text,
-    html[dir="rtl"] .form-label,
-    html[dir="rtl"] .form-text,
-    html[dir="rtl"] label { text-align: right !important; }
-    html[dir="rtl"] .form-control,
-    html[dir="rtl"] input,
-    html[dir="rtl"] textarea { text-align: right; }
+
+    /* RTL overrides for horizontal timeline (beginner-friendly) */
+    html[dir="rtl"] .timeline-horizontal {
+      flex-direction: row-reverse !important; /* Flip timeline direction */
+    }
+    html[dir="rtl"] .timeline-bar {
+      left: unset !important;
+      right: 80px !important; /* Flip bar position */
+      background: linear-gradient(90deg, #4CAF50, #0071C5); /* Flip gradient direction */
+    }
+    /* Flip event positions for RTL */
+    html[dir="rtl"] .timeline-event-horizontal[data-index="0"] { right: 80px !important; left: unset !important; }
+    html[dir="rtl"] .timeline-event-horizontal[data-index="1"] { right: 180px !important; left: unset !important; }
+    html[dir="rtl"] .timeline-event-horizontal[data-index="2"] { right: 300px !important; left: unset !important; }
+    html[dir="rtl"] .timeline-event-horizontal[data-index="3"] { right: 420px !important; left: unset !important; }
+    html[dir="rtl"] .timeline-event-horizontal[data-index="4"] { right: 540px !important; left: unset !important; }
+    html[dir="rtl"] .timeline-event-horizontal[data-index="5"] { right: 660px !important; left: unset !important; }
+    html[dir="rtl"] .timeline-event-horizontal[data-index="6"] { right: 780px !important; left: unset !important; }
+    html[dir="rtl"] .timeline-event-horizontal[data-index="7"] { right: 970px !important; left: unset !important; }
+    /* Flip card alignment for RTL */
+    html[dir="rtl"] .timeline-card {
+      flex-direction: row-reverse !important;
+      text-align: right !important;
+    }
+
+    /* RTL overrides for horizontal timeline (make sure timeline is visible and same width as LTR) */
+    html[dir="rtl"] .timeline-horizontal {
+      flex-direction: row-reverse !important; /* Flip timeline direction */
+      left: 0 !important; /* Always start at left edge */
+      right: auto !important;
+      width: 100vw !important; /* Take up full viewport width */
+      max-width: 1200px !important; /* Same as LTR */
+      margin-left: auto !important;
+      margin-right: auto !important;
+    }
+    html[dir="rtl"] .timeline-bar {
+      left: 0 !important; /* Bar starts at left edge */
+      right: auto !important;
+      width: calc(100% - 160px) !important; /* Same as LTR */
+      background: linear-gradient(90deg, #4CAF50, #0071C5); /* Flip gradient direction */
+    }
+    /* Flip event positions for RTL, but keep them visible */
+    html[dir="rtl"] .timeline-event-horizontal[data-index="0"] { right: 80px !important; left: auto !important; }
+    html[dir="rtl"] .timeline-event-horizontal[data-index="1"] { right: 180px !important; left: auto !important; }
+    html[dir="rtl"] .timeline-event-horizontal[data-index="2"] { right: 300px !important; left: auto !important; }
+    html[dir="rtl"] .timeline-event-horizontal[data-index="3"] { right: 420px !important; left: auto !important; }
+    html[dir="rtl"] .timeline-event-horizontal[data-index="4"] { right: 540px !important; left: auto !important; }
+    html[dir="rtl"] .timeline-event-horizontal[data-index="5"] { right: 660px !important; left: auto !important; }
+    html[dir="rtl"] .timeline-event-horizontal[data-index="6"] { right: 780px !important; left: auto !important; }
+    html[dir="rtl"] .timeline-event-horizontal[data-index="7"] { right: 970px !important; left: auto !important; }
+    /* Flip card alignment for RTL */
+    html[dir="rtl"] .timeline-card {
+      flex-direction: row-reverse !important;
+      text-align: right !important;
+    }
+  </style>
+  <script>
+    // Beginner-friendly: Only set RTL if the detected language is actually RTL
+    function updateRTL() {
+      // RTL language codes
+      var rtlLangs = ['ar', 'he', 'fa', 'ur'];
+      var html = document.documentElement;
+      var lang = html.getAttribute('lang');
+      // Only set RTL if lang is in rtlLangs, otherwise set LTR
+      if (rtlLangs.includes(lang)) {
+        html.setAttribute('dir', 'rtl');
+      } else {
+        html.setAttribute('dir', 'ltr');
+      }
+    }
+    // Run on page load
+    updateRTL();
+    // Observe changes to <html lang="..."> (Google Translate changes this)
+    var observer = new MutationObserver(function(mutations) {
+      mutations.forEach(function(mutation) {
+        if (mutation.attributeName === 'lang') {
+          updateRTL();
+        }
+      });
+    });
+    observer.observe(document.documentElement, { attributes: true });
+    // Also check every second in case Google Translate changes it in a way MutationObserver misses
+    setInterval(updateRTL, 1000);
+  </script>
 </body>
 </html>
 
