@@ -836,6 +836,80 @@
       display: none;
     }
 
+    /* Make footer smaller */
+    footer {
+      padding: 0.7rem 0 0.7rem 0;
+      font-size: 0.95rem;
+      margin-top: 0;
+      border-top: 2px solid #0071C5;
+      width: 100%;
+      position: relative;
+      bottom: 0;
+      left: 0;
+    }
+
+    /* Make timeline longer and cards spaced out */
+    .timeline-section {
+      min-height: 140vh;
+      height: 140vh;
+      padding-bottom: 60px;
+      padding-top: 40px;
+      overflow-y: auto;
+    }
+    .timeline-vertical {
+      gap: 3.5rem;
+      margin-bottom: 60px;
+    }
+    .timeline-event-vertical {
+      margin-bottom: 0;
+    }
+    .timeline-card {
+      margin-bottom: 0 !important;
+      margin-top: 0 !important;
+    }
+
+    /* --- FIX: Only show 2022/2023 cards on hover/click, not always --- */
+    @media (max-width: 1200px), (max-width: 1300px) and (max-height: 700px), (max-width: 767px),
+           (device-width: 414px) and (device-height: 896px),
+           (device-width: 390px) and (device-height: 844px),
+           (device-width: 412px) and (device-height: 915px),
+           (max-width: 420px) and (max-height: 920px),
+           (device-width: 360px) and (device-height: 740px),
+           (max-width: 370px) and (max-height: 750px) {
+      /* Remove forced display for 2022/2023 cards */
+      .timeline-event-vertical[aria-label="2022"] .timeline-card,
+      .timeline-event-vertical[aria-label="2023"] .timeline-card {
+        /* Only show when .active */
+        display: none !important;
+        opacity: 0 !important;
+        visibility: hidden !important;
+        margin-bottom: 0 !important;
+      }
+      .timeline-event-vertical.active[aria-label="2022"] .timeline-card,
+      .timeline-event-vertical.active[aria-label="2023"] .timeline-card {
+        display: flex !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        margin-bottom: 2rem !important;
+      }
+      /* ...existing code for spacing... */
+      .timeline-section {
+        min-height: 140vh !important;
+        height: 140vh !important;
+        padding-bottom: 60px !important;
+        padding-top: 40px !important;
+        overflow-y: auto !important;
+      }
+      .timeline-vertical {
+        gap: 3.5rem !important;
+        margin-bottom: 60px !important;
+      }
+      footer {
+        padding: 0.7rem 0 0.7rem 0 !important;
+        font-size: 0.95rem !important;
+        margin-top: 0 !important;
+      }
+    }
     /* ...existing code... */
   </style>
   <script>
@@ -1095,77 +1169,3 @@
           <div class="timeline-card">
             <img class="timeline-img" src="https://mms.businesswire.com/media/20240124070327/en/2007663/4/Intel-New-Mexico-Fabs-1.jpg" alt="Intel Fabs 2006">
             <div class="card-text">
-              <strong>2006</strong><br>
-              Intel's greenhouse gas emissions reached their peak in 2006.
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- 2020 Card -->
-      <div class="timeline-event-vertical" tabindex="0" aria-label="2020" data-label="2020">
-        <div class="timeline-dot-vertical"></div>
-        <div style="flex: 1;">
-          <div class="timeline-date-vertical">2020</div>
-          <div class="timeline-card">
-            <img class="timeline-img" src="https://d1io3yog0oux5.cloudfront.net/_d695306582e6f1104214b69298ca5ad9/intel/news/155/1497/image.jpeg" alt="Intel Sustainability 2020">
-            <div class="card-text">
-              <strong>2020</strong><br>
-              Intel achieves 100% renewable energy usage in U.S. operations.
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- 2022 Card -->
-      <div class="timeline-event-vertical" tabindex="0" aria-label="2022" data-label="2022">
-        <div class="timeline-dot-vertical"></div>
-        <div style="flex: 1;">
-          <div class="timeline-date-vertical">2022</div>
-          <div class="timeline-card">
-            <img class="timeline-img long-img" src="https://tse3.mm.bing.net/th/id/OIP.4fhGa4057rk5u4ElYKciFAHaE7?pid=Api&P=0&h=220" alt="Intel Sustainability 2022">
-            <div class="card-text">
-              <strong>2022</strong><br>
-              Intel employees celebrate Earth Day, supporting global sustainability efforts.
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- 2023 Card -->
-      <div class="timeline-event-vertical" tabindex="0" aria-label="2023" data-label="2023">
-        <div class="timeline-dot-vertical"></div>
-        <div style="flex: 1;">
-          <div class="timeline-date-vertical">2023</div>
-          <div class="timeline-card">
-            <img class="timeline-img" style="object-fit:cover;" src="https://tse3.mm.bing.net/th/id/OIP.0lb-4bSPZbaAuxvoEjeu9wHaEK?pid=Api&P=0&h=220" alt="Intel Sustainability 2023">
-            <div class="card-text">
-              <strong>2023</strong><br>
-              Intel's Fab 34 plant achieves less than 1% waste, with robust recycling and diversion efforts.
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <footer>
-    <!-- Beginner-friendly subscription form -->
-    <form>
-      <div class="mb-3">
-        <label for="exampleInputName" class="form-label">Name</label>
-        <input type="text" class="form-control" id="exampleInputName" placeholder="Enter your name">
-      </div>
-      <div class="mb-3">
-        <label for="exampleInputEmail1" class="form-label">Email address</label>
-        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter your email">
-        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-      </div>
-      <div class="mb-3 form-check">
-        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-        <label class="form-check-label" for="exampleCheck1">Check me out</label>
-      </div>
-      <button type="submit" class="btn btn-primary">Subscribe</button>
-    </form>
-    <p>&copy; 2025 Intel Corporation | Eco-Tech Vision</p>
-  </footer>
-  <!-- Device banners for students to see which device is detected -->
-  <div id="device-banner-15">Timeline shortened by 15% for your device</div>
-  <div id="device-banner-5">Timeline shortened by 5% for your device</div>
-</body>
