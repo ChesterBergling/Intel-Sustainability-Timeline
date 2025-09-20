@@ -513,8 +513,8 @@
       background: linear-gradient(90deg, #0071C5 0%, #4CAF50 100%);
       color: #fff;
       text-align: center;
-      padding: 1.2rem 0 1.2rem 0;
-      font-size: 1.08rem;
+      padding: 3rem 0 3rem 0;
+      font-size: 1.3rem;
       letter-spacing: 0.03em;
       box-shadow: 0 -2px 10px rgba(0,113,197,0.10);
       margin-top: 0;
@@ -637,13 +637,13 @@
     /* Multiply vertical scroll area by 300% on non-desktop devices */
     @media (max-width: 1200px) {
       .timeline-section {
-        height: 300vh !important; /* 300% vertical scroll */
-        min-height: 300vh !important;
+        height: 210vh !important; /* 300% vertical scroll */
+        min-height: 210vh !important;
         overflow-y: auto !important;
       }
       .timeline-vertical {
-        height: 300vh !important;
-        min-height: 300vh !important;
+        height: 210vh !important;
+        min-height: 210vh !important;
         overflow-y: auto !important;
       }
     }
@@ -658,6 +658,40 @@
         margin-right: auto !important;
       }
     }
+
+    /* Increase footer size for all languages */
+    footer {
+      /* Beginner: make footer taller and text larger */
+      padding: 3rem 0 3rem 0;
+      font-size: 1.3rem;
+    }
+
+    /* Make timeline cards smaller and fit on screen for RTL languages */
+    html[dir="rtl"] .timeline-card {
+      max-width: 90vw !important;
+      width: 90vw !important;
+      font-size: 0.97em !important;
+      padding: 1.2rem 1rem !important;
+      margin-left: auto !important;
+      margin-right: auto !important;
+    }
+
+    /* On desktop, make subscribe form and button narrower and centered */
+    @media (min-width: 1200px) {
+      footer form {
+        max-width: 420px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      footer .btn {
+        width: 100%;
+        max-width: 220px;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+      }
+    }
+
     /* ...existing code... */
   </style>
   <script>
@@ -1058,38 +1092,4 @@
     /* Flip card alignment for RTL */
     html[dir="rtl"] .timeline-card {
       flex-direction: row-reverse !important;
-      text-align: right !important;
-    }
-  </style>
-  <script>
-    // Beginner-friendly: Detect RTL languages and set direction
-    // This works with Google Translate and updates dynamically
-    function updateRTL() {
-      // List of RTL language codes
-      var rtlLangs = ['ar', 'he', 'fa', 'ur'];
-      var html = document.documentElement;
-      var lang = html.getAttribute('lang');
-      // Set direction based on language
-      if (rtlLangs.includes(lang)) {
-        html.setAttribute('dir', 'rtl');
-      } else {
-        html.setAttribute('dir', 'ltr');
-      }
-    }
-    // Run on page load
-    updateRTL();
-    // Observe changes to <html lang="..."> (Google Translate changes this)
-    var observer = new MutationObserver(function(mutations) {
-      mutations.forEach(function(mutation) {
-        if (mutation.attributeName === 'lang') {
-          updateRTL();
-        }
-      });
-    });
-    observer.observe(document.documentElement, { attributes: true });
-    // Also check every second in case Google Translate changes it in a way MutationObserver misses
-    setInterval(updateRTL, 1000);
-  </script>
-</body>
-</html>
 
