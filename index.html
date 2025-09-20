@@ -1035,6 +1035,65 @@
         padding-bottom: 180px !important; /* Extra space for scrolling */
       }
     }
+
+    /* Always allow more vertical scrolling for all devices */
+    html, body {
+      /* Beginner tip: This lets users scroll to the bottom of the page */
+      overflow-y: auto !important;
+      height: auto !important;
+      min-height: 100vh !important;
+    }
+    .timeline-section {
+      /* Add extra space for scrolling at the bottom */
+      min-height: 180vh !important;
+      height: auto !important;
+      padding-bottom: 300px !important;
+      /* ...existing code... */
+    }
+
+    /* Timeline adjusts direction based on language */
+    /* Beginner tip: Use left-to-right for English, right-to-left for Arabic/Hebrew */
+    html[lang="en"] .timeline-vertical {
+      flex-direction: column !important;
+      align-items: flex-start !important;
+    }
+    html[lang="en"] .timeline-vertical::before {
+      left: 40px !important;
+      right: unset !important;
+    }
+    html[lang="en"] .timeline-dot-vertical {
+      margin-left: 30px !important;
+      margin-right: 14px !important;
+    }
+    html[lang="en"] .timeline-card {
+      flex-direction: row !important;
+      text-align: left !important;
+    }
+
+    html[lang="ar"], html[lang="he"], html[dir="rtl"] .timeline-vertical {
+      flex-direction: column-reverse !important;
+      align-items: flex-end !important;
+    }
+    html[lang="ar"] .timeline-vertical::before,
+    html[lang="he"] .timeline-vertical::before,
+    html[dir="rtl"] .timeline-vertical::before {
+      left: unset !important;
+      right: 40px !important;
+    }
+    html[lang="ar"] .timeline-dot-vertical,
+    html[lang="he"] .timeline-dot-vertical,
+    html[dir="rtl"] .timeline-dot-vertical {
+      margin-left: 14px !important;
+      margin-right: 30px !important;
+    }
+    html[lang="ar"] .timeline-card,
+    html[lang="he"] .timeline-card,
+    html[dir="rtl"] .timeline-card {
+      flex-direction: row-reverse !important;
+      text-align: right !important;
+    }
+
+    /* ...existing code... */
   </style>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
