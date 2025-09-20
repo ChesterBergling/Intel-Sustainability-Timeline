@@ -532,79 +532,72 @@
       display: block;
     }
 
-    /* RTL horizontal timeline: align to right, same width as LTR */
+    /* Make headings and cards fit device width */
+    .timeline-title,
+    .header-title,
+    .hero h2,
+    footer p,
+    .timeline-card {
+      width: 100%;
+      box-sizing: border-box;
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
+      display: block;
+    }
+
+    /* Vertical timeline: allow full scroll from top to bottom */
+    .timeline-section {
+      min-height: 100vh;
+      height: 100%;
+      overflow-y: auto;
+    }
+    .timeline-vertical {
+      height: 100%;
+      overflow-y: auto;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    /* Horizontal timeline: reverse for RTL/LTR */
+    /* LTR: align left, RTL: align right */
+    .timeline-horizontal {
+      position: relative;
+      width: 100vw;
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    html[dir="ltr"] .timeline-horizontal {
+      flex-direction: row !important;
+      left: 0 !important;
+      right: auto !important;
+    }
+    html[dir="ltr"] .timeline-bar {
+      left: 0 !important;
+      right: auto !important;
+      background: linear-gradient(90deg, #0071C5, #4CAF50);
+    }
+    html[dir="ltr"] .timeline-event-horizontal[data-index="0"] { left: 80px !important; right: auto !important; }
+    html[dir="ltr"] .timeline-event-horizontal[data-index="1"] { left: 180px !important; right: auto !important; }
+    html[dir="ltr"] .timeline-event-horizontal[data-index="2"] { left: 300px !important; right: auto !important; }
+    html[dir="ltr"] .timeline-event-horizontal[data-index="3"] { left: 420px !important; right: auto !important; }
+    html[dir="ltr"] .timeline-event-horizontal[data-index="4"] { left: 540px !important; right: auto !important; }
+    html[dir="ltr"] .timeline-event-horizontal[data-index="5"] { left: 660px !important; right: auto !important; }
+    html[dir="ltr"] .timeline-event-horizontal[data-index="6"] { left: 780px !important; right: auto !important; }
+    html[dir="ltr"] .timeline-event-horizontal[data-index="7"] { left: 970px !important; right: auto !important; }
+    html[dir="ltr"] .timeline-card { flex-direction: row !important; text-align: left !important; }
+
     html[dir="rtl"] .timeline-horizontal {
       flex-direction: row-reverse !important;
-      right: 0 !important; /* Align timeline to right edge */
+      right: 0 !important;
       left: auto !important;
-      width: 100vw !important;
-      max-width: 1200px !important;
-      margin-left: auto !important;
-      margin-right: auto !important;
     }
     html[dir="rtl"] .timeline-bar {
-      right: 0 !important; /* Bar starts at right edge */
+      right: 0 !important;
       left: auto !important;
-      width: calc(100% - 160px) !important;
       background: linear-gradient(90deg, #4CAF50, #0071C5);
     }
-
-    /* RTL CSS OVERRIDES */
-    /* General RTL overrides */
-    html[dir="rtl"] * { box-sizing: border-box; }
-
-    /* Bootstrap grid: flip columns */
-    html[dir="rtl"] .row { flex-direction: row-reverse !important; }
-    html[dir="rtl"] .col,
-    html[dir="rtl"] [class^="col-"] { text-align: right; }
-
-    /* Timeline vertical: flip dot, card, and marker */
-    html[dir="rtl"] .timeline-vertical { flex-direction: column !important; }
-    html[dir="rtl"] .timeline-vertical::before { left: unset !important; right: 40px !important; }
-    html[dir="rtl"] .timeline-dot-vertical { margin-left: 14px !important; margin-right: 30px !important; }
-    html[dir="rtl"] .timeline-card { flex-direction: row-reverse !important; text-align: right !important; }
-
-    /* RTL overrides for horizontal timeline (beginner-friendly) */
-    html[dir="rtl"] .timeline-horizontal {
-      flex-direction: row-reverse !important; /* Flip timeline direction */
-    }
-    html[dir="rtl"] .timeline-bar {
-      left: unset !important;
-      right: 80px !important; /* Flip bar position */
-      background: linear-gradient(90deg, #4CAF50, #0071C5); /* Flip gradient direction */
-    }
-    /* Flip event positions for RTL */
-    html[dir="rtl"] .timeline-event-horizontal[data-index="0"] { right: 80px !important; left: unset !important; }
-    html[dir="rtl"] .timeline-event-horizontal[data-index="1"] { right: 180px !important; left: unset !important; }
-    html[dir="rtl"] .timeline-event-horizontal[data-index="2"] { right: 300px !important; left: unset !important; }
-    html[dir="rtl"] .timeline-event-horizontal[data-index="3"] { right: 420px !important; left: unset !important; }
-    html[dir="rtl"] .timeline-event-horizontal[data-index="4"] { right: 540px !important; left: unset !important; }
-    html[dir="rtl"] .timeline-event-horizontal[data-index="5"] { right: 660px !important; left: unset !important; }
-    html[dir="rtl"] .timeline-event-horizontal[data-index="6"] { right: 780px !important; left: unset !important; }
-    html[dir="rtl"] .timeline-event-horizontal[data-index="7"] { right: 970px !important; left: unset !important; }
-    /* Flip card alignment for RTL */
-    html[dir="rtl"] .timeline-card {
-      flex-direction: row-reverse !important;
-      text-align: right !important;
-    }
-
-    /* RTL overrides for horizontal timeline (make sure timeline is visible and same width as LTR) */
-    html[dir="rtl"] .timeline-horizontal {
-      flex-direction: row-reverse !important; /* Flip timeline direction */
-      left: 0 !important; /* Always start at left edge */
-      right: auto !important;
-      width: 100vw !important; /* Take up full viewport width */
-      max-width: 1200px !important; /* Same as LTR */
-      margin-left: auto !important;
-      margin-right: auto !important;
-    }
-    html[dir="rtl"] .timeline-bar {
-      left: 0 !important; /* Bar starts at left edge */
-      right: auto !important;
-      width: calc(100% - 160px) !important; /* Same as LTR */
-      background: linear-gradient(90deg, #4CAF50, #0071C5); /* Flip gradient direction */
-    }
-    /* Flip event positions for RTL, but keep them visible */
     html[dir="rtl"] .timeline-event-horizontal[data-index="0"] { right: 80px !important; left: auto !important; }
     html[dir="rtl"] .timeline-event-horizontal[data-index="1"] { right: 180px !important; left: auto !important; }
     html[dir="rtl"] .timeline-event-horizontal[data-index="2"] { right: 300px !important; left: auto !important; }
@@ -613,11 +606,14 @@
     html[dir="rtl"] .timeline-event-horizontal[data-index="5"] { right: 660px !important; left: auto !important; }
     html[dir="rtl"] .timeline-event-horizontal[data-index="6"] { right: 780px !important; left: auto !important; }
     html[dir="rtl"] .timeline-event-horizontal[data-index="7"] { right: 970px !important; left: auto !important; }
-    /* Flip card alignment for RTL */
-    html[dir="rtl"] .timeline-card {
-      flex-direction: row-reverse !important;
-      text-align: right !important;
+    html[dir="rtl"] .timeline-card { flex-direction: row-reverse !important; text-align: right !important; }
+
+    /* Vertical timeline: always normal order for both LTR and RTL */
+    html[dir="ltr"] .timeline-vertical,
+    html[dir="rtl"] .timeline-vertical {
+      flex-direction: column !important;
     }
+    /* ...existing code... */
   </style>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -1021,13 +1017,14 @@
     }
   </style>
   <script>
-    // Beginner-friendly: Only set RTL if the detected language is actually RTL
+    // Beginner-friendly: Detect RTL languages and set direction
+    // This works with Google Translate and updates dynamically
     function updateRTL() {
-      // RTL language codes
+      // List of RTL language codes
       var rtlLangs = ['ar', 'he', 'fa', 'ur'];
       var html = document.documentElement;
       var lang = html.getAttribute('lang');
-      // Only set RTL if lang is in rtlLangs, otherwise set LTR
+      // Set direction based on language
       if (rtlLangs.includes(lang)) {
         html.setAttribute('dir', 'rtl');
       } else {
@@ -1047,6 +1044,9 @@
     observer.observe(document.documentElement, { attributes: true });
     // Also check every second in case Google Translate changes it in a way MutationObserver misses
     setInterval(updateRTL, 1000);
+  </script>
+</body>
+</html>
   </script>
 </body>
 </html>
