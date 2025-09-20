@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+DOCTYPE html
 <html lang="en" dir="rtl">
 <head>
   <meta charset="UTF-8">
@@ -414,7 +414,7 @@
       .timeline-event-horizontal[data-index="4"] { left: 540px; }
       .timeline-event-horizontal[data-index="5"] { left: 660px; }
       .timeline-event-horizontal[data-index="6"] { left: 780px; }
-      .timeline-event-horizontal[data-index="7"] { left: 970px; }
+      .timeline-event-horizontal[data-index="7"] { left: 875px; }
       .timeline-card {
         width: 98vw !important;
         max-width: 98vw !important;
@@ -1008,7 +1008,7 @@
     /* On desktop, move the 2023 card a little more toward 2023 (closer to the end) */
     @media (min-width: 1301px) {
       .timeline-event-horizontal[data-index="7"] {
-        left: 920px !important; /* Move 2023 card slightly closer to 2023 */
+        left: 875px !important; /* Move 2023 card halfway closer to 2022 */
       }
     }
 
@@ -1091,6 +1091,36 @@
     html[dir="rtl"] .timeline-card {
       flex-direction: row-reverse !important;
       text-align: right !important;
+    }
+
+    /* PART 1: Desktop - Move the 2023 card 50% closer to the 2022 card */
+    @media (min-width: 1301px) {
+      /* Beginner tip: This moves the 2023 card halfway closer to the 2022 card so it fits better on desktop screens */
+      .timeline-event-horizontal[data-index="7"] {
+        left: 875px !important;
+      }
+    }
+
+    /* PART 2: Nest Hub Max - Remove the card background */
+    @media (min-width: 1280px) and (max-width: 1366px) and (min-height: 800px) and (max-height: 900px) {
+      /* Beginner tip: On Nest Hub Max, the card background is removed so it blends with the page */
+      .timeline-card {
+        background: transparent !important;
+        box-shadow: none !important;
+        border: none !important;
+      }
+    }
+
+    /* PART 3: Desktop - Add a comment for students explaining the 2023 card position */
+    @media (min-width: 1301px) {
+      /* Beginner tip: This moves the 2023 card closer to the 2022 card so it fits better on desktop screens */
+      /* .timeline-event-horizontal[data-index="7"] { left: 875px !important; } */
+    }
+
+    /* PART 4: Nest Hub Max - Add a comment for students explaining the transparent card */
+    @media (min-width: 1280px) and (max-width: 1366px) and (min-height: 800px) and (max-height: 900px) {
+      /* Beginner tip: On Nest Hub Max, the card background is removed so it blends with the page */
+      /* .timeline-card { background: transparent !important; } */
     }
 
     /* ...existing code... */
