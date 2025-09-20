@@ -1012,14 +1012,27 @@
       }
     }
 
-    /* On iPhones only, increase vertical scroll by 10% */
-    /* Beginner tip: This makes the timeline taller for iPhones */
+    /* On iPhone XR and iPhone 12 Pro, move the 2022 card halfway to 2020 so 2023 shows up */
+    /* Beginner tip: This helps the last card (2023) fit on the timeline */
     @media (device-width: 414px) and (device-height: 896px), /* iPhone XR */
            (device-width: 390px) and (device-height: 844px) { /* iPhone 12 Pro */
+      .timeline-event-horizontal[data-index="6"] {
+        left: 610px !important; /* Move 2022 card halfway to 2020 */
+      }
       .timeline-vertical {
-        max-height: 110vh !important;
-        height: 110vh !important;
-        /* ...existing code... */
+        max-height: none !important;
+        height: auto !important;
+        overflow-y: visible !important;
+      }
+      body, html {
+        overflow-y: auto !important; /* Allow scrolling to bottom */
+        height: auto !important;
+      }
+      .timeline-section {
+        min-height: 120vh !important; /* Make sure user can scroll to bottom */
+        height: auto !important;
+        overflow-y: visible !important;
+        padding-bottom: 180px !important; /* Extra space for scrolling */
       }
     }
   </style>
