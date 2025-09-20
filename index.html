@@ -505,6 +505,10 @@
       box-shadow: 0 -2px 10px rgba(0,113,197,0.10);
       margin-top: 0;
       border-top: 2px solid #0071C5;
+      width: 100%;
+      position: relative;
+      bottom: 0;
+      left: 0;
     }
 
     /* Center the timeline title (keep color and font-size unchanged) */
@@ -614,26 +618,142 @@
       text-align: right !important;
     }
 
-    /* BEGINNER TIP: Always use column for vertical timeline, never column-reverse */
+    /* BEGINNER TIP: Reverse the vertical timeline order so the first event is at the bottom and last at the top */
     .timeline-vertical {
-      flex-direction: column !important;
+      flex-direction: column-reverse !important;
+      /* ...existing code... */
     }
 
-    /* On mobile/tablet/Nest Hub, multiply vertical scroll area by 50% */
-    @media (max-width: 1200px), (max-width: 1300px) and (max-height: 700px), (max-width: 767px),
-           (min-width: 1280px) and (max-width: 1366px) and (min-height: 800px) and (max-height: 900px) {
+    /* Make sure vertical timeline is visible and scrollable on all devices */
+    .timeline-section {
+      min-height: 100vh;
+      height: 100%;
+      overflow-y: auto;
+    }
+
+    /* Cards: align with their plot points (dot) using flex and margin for beginners */
+    .timeline-event-vertical {
+      align-items: center; /* Center dot and card vertically */
+    }
+    .timeline-dot-vertical {
+      margin-top: 0; /* Remove extra top margin so dot aligns with card */
+    }
+    .timeline-card {
+      margin-top: 0 !important;
+      margin-bottom: 0 !important;
+    }
+
+    /* Fix footer always visible at the bottom */
+    footer {
+      background: linear-gradient(90deg, #0071C5 0%, #4CAF50 100%);
+      color: #fff;
+      text-align: center;
+      padding: 1.2rem 0 1.2rem 0;
+      font-size: 1.08rem;
+      letter-spacing: 0.03em;
+      box-shadow: 0 -2px 10px rgba(0,113,197,0.10);
+      margin-top: 0;
+      border-top: 2px solid #0071C5;
+      width: 100%;
+      position: relative;
+      bottom: 0;
+      left: 0;
+    }
+
+    /* --- Special styles for Nest Hub Max --- */
+    @media (min-width: 1280px) and (max-width: 1366px) and (min-height: 800px) and (max-height: 900px) {
+      /* Hide all timelines by default on Nest Hub Max */
+      .timeline-horizontal, .timeline-vertical {
+        display: none !important;
+      }
+      /* Show only the vertical timeline on Nest Hub Max */
       .timeline-vertical {
-        flex-direction: column !important;
         display: flex !important;
-        height: 150%; /* 50% more scroll area */
-        max-height: 150vh !important;
-        overflow-y: auto;
+        flex-direction: column !important;
+        position: relative !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 auto !important;
+        padding: 0 !important;
+        height: auto !important;
+        overflow: visible !important;
+        z-index: 1;
       }
-      .timeline-horizontal {
-        display: none !important;
+      .timeline-event-vertical {
+        position: relative !important;
+        width: calc(100% - 60px) !important;
+        max-width: calc(100% - 60px) !important;
+        margin: 0 auto 2rem auto !important;
+        padding: 1rem 1.5rem !important;
+        border-radius: 16px !important;
+        background: rgba(255, 255, 255, 0.9) !important;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15) !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        gap: 1rem !important;
       }
-      .timeline-bar {
-        display: none !important;
+      .timeline-dot-vertical {
+        width: 20px !important;
+        height: 20px !important;
+        margin-left: 0 !important;
+        margin-right: 0.5rem !important;
+        flex-shrink: 0;
+      }
+      .timeline-date-vertical {
+        font-size: 1rem !important;
+        margin-bottom: 0.5rem !important;
+      }
+      .timeline-card {
+        display: flex !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        position: relative !important;
+        left: 0 !important;
+        top: 0 !important;
+        transform: none !important;
+        box-sizing: border-box;
+        border-radius: 16px !important;
+        background: #fff !important;
+        border: 2px solid #F5F5F5 !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        gap: 16px !important;
+        padding: 1rem 1.5rem !important;
+        min-height: 120px !important;
+        z-index: 100 !important;
+        text-align: left !important;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.10) !important;
+        transition: opacity 180ms ease, box-shadow 180ms ease;
+        overflow-x: hidden !important;
+        max-width: 100% !important;
+        width: calc(100% - 32px) !important;
+        margin-left: 0 !important;
+        margin-right: auto !important;
+      }
+      .timeline-card img,
+      .timeline-card img.long-img {
+        width: 100px !important;
+        height: 100px !important;
+        max-width: 100px !important;
+        max-height: 100px !important;
+        object-fit: cover !important;
+        border-radius: 8px !important;
+        margin-right: 16px !important;
+        background: #fff !important;
+      }
+      .card-text {
+        font-size: 0.9em !important;
+        flex: 1 1 0%;
+      }
+      /* Ensure footer is always at the bottom */
+      footer {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        padding: 1rem 0;
+        font-size: 0.9rem;
       }
     }
 
@@ -940,12 +1060,26 @@
       </div>
     </div>
   </section>
-  <!-- BEGINNER TIP: Footer contains a simple subscription form -->
   <footer>
+    <!-- Beginner-friendly subscription form -->
     <form>
-      <!-- Name input -->
       <div class="mb-3">
         <label for="exampleInputName" class="form-label">Name</label>
         <input type="text" class="form-control" id="exampleInputName" placeholder="Enter your name">
       </div>
-      <!-- Email input -->
+      <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Email address</label>
+        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter your email">
+        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+      </div>
+      <div class="mb-3 form-check">
+        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+        <label class="form-check-label" for="exampleCheck1">Check me out</label>
+      </div>
+      <button type="submit" class="btn btn-primary">Subscribe</button>
+    </form>
+    <p>&copy; 2025 Intel Corporation | Eco-Tech Vision</p>
+  </footer>
+</body>
+</html>
+
