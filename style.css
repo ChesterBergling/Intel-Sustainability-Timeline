@@ -161,11 +161,7 @@ nav a:hover, nav a:focus { text-decoration: underline; color: #4CAF50; }
   display: none; /* Initially hidden */
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
   position: absolute;
-  top: 110px;
-  left: 50%;
-  transform: translateX(-50%);
   background: #F5F5F5;
   border-radius: 16px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.13);
@@ -177,12 +173,7 @@ nav a:hover, nav a:focus { text-decoration: underline; color: #4CAF50; }
   padding: 1rem;
   z-index: 1000;
   text-align: left;
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  gap: 18px;
-  overflow: visible;
-  margin-bottom: 1rem;
+  transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
 }
 
 .timeline-card.active {
@@ -191,25 +182,22 @@ nav a:hover, nav a:focus { text-decoration: underline; color: #4CAF50; }
   visibility: visible;
 }
 
-.timeline-event-horizontal.active .timeline-card {
-  display: flex;
-  opacity: 1;
-  visibility: visible;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.16);
+/* Mobile-specific styles */
+@media (max-width: 767px) {
+  .timeline-card {
+    top: 110%; /* Position the card below the timeline */
+    left: 50%;
+    transform: translateX(-50%);
+  }
 }
 
-.timeline-card img {
-  width: 140px;
-  height: 140px;
-  max-width: 140px;
-  max-height: 140px;
-  object-fit: cover;
-  border-radius: 8px;
-  margin: 0;
-  background: none;
-  display: block;
-  flex-shrink: 0;
-  transition: box-shadow 0.2s;
+/* Desktop-specific styles */
+@media (min-width: 768px) {
+  .timeline-card {
+    top: 0; /* Align with the timeline */
+    left: 150px; /* Position the card closer to the timeline */
+    transform: none;
+  }
 }
 
 /* Removed redundant media queries */
