@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   plotPoints.forEach((plotPoint, index) => {
-    // Show card on hover
+    // Ensure interactivity for plot points
     plotPoint.addEventListener('mouseenter', () => {
       cards.forEach(card => card.classList.remove('active')); // Hide all cards
       if (cards[index]) {
@@ -30,7 +30,6 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
 
-    // Show card on click
     plotPoint.addEventListener('click', () => {
       cards.forEach(card => card.classList.remove('active')); // Hide all cards
       if (cards[index]) {
@@ -47,26 +46,29 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   // Debugging: Log button and card index
-  
+  console.log('Buttons:', buttons);
+  console.log('Cards:', cards);
+  console.log('Plot Points:', plotPoints);
+
   function activateDesktopTimeline() {
     const events = document.querySelectorAll('.timeline-event-horizontal');
-    events.forEach(ev => {
+
+    events.forEach((ev, index) => {
       ev.addEventListener('mouseenter', function() {
         events.forEach(e => e.classList.remove('active'));
         this.classList.add('active');
+        cards.forEach(card => card.classList.remove('active'));
+        if (cards[index]) {
+          cards[index].classList.add('active');
+        }
       });
+
       ev.addEventListener('click', function() {
         events.forEach(e => e.classList.remove('active'));
         this.classList.add('active');
-      });
-      ev.addEventListener('focus', function() {
-        events.forEach(e => e.classList.remove('active'));
-        this.classList.add('active');
-      });
-      ev.addEventListener('keypress', function(e) {
-        if (e.key === 'Enter' || e.key === ' ') {
-          events.forEach(e => e.classList.remove('active'));
-          this.classList.add('active');
+        cards.forEach(card => card.classList.remove('active'));
+        if (cards[index]) {
+          cards[index].classList.add('active');
         }
       });
     });
@@ -74,6 +76,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Ensure the first event is active by default
     if (events.length > 0) {
       events[0].classList.add('active');
+      cards[0]?.classList.add('active');
     }
   }
 
