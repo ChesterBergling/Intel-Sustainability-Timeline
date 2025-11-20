@@ -20,6 +20,7 @@ nav a:hover, nav a:focus { text-decoration: underline; color: #4CAF50; }
   align-items: center; /* Ensure alignment of plot points with the timeline bar */
   justify-content: flex-start;
   position: relative;
+  top: -300px; /* Raise the timeline by 300px */
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
@@ -39,7 +40,7 @@ nav a:hover, nav a:focus { text-decoration: underline; color: #4CAF50; }
 .timeline-bar {
   display: block;
   position: absolute;
-  top: calc(40% - 300px); /* Timeline moved up by 300px */
+  top: 50%; /* Center the bar vertically relative to the new position */
   left: 70px;
   width: calc(100% - 140px);
   height: 4px;
@@ -55,6 +56,7 @@ nav a:hover, nav a:focus { text-decoration: underline; color: #4CAF50; }
   flex-direction: column;
   align-items: center;
   min-height: 310px; /* Increase height to accommodate more spacing */
+  top: -300px; /* Raise plot points by 300px */
   z-index: 2;
   outline: none;
   background: none;
@@ -295,7 +297,7 @@ nav a:hover, nav a:focus { text-decoration: underline; color: #4CAF50; }
   .timeline-bar {
     display: block !important;
     position: absolute;
-    top: 50%; /* Center the bar vertically relative to the timeline */
+    top: 50%; /* Center the bar vertically relative to the new position */
     left: 70px;
     width: calc(100% - 140px);
     height: 4px;
@@ -310,6 +312,7 @@ nav a:hover, nav a:focus { text-decoration: underline; color: #4CAF50; }
     flex-direction: column;
     align-items: center;
     min-height: 310px; /* Increase height to accommodate more spacing */
+    top: -300px; /* Raise plot points by 300px */
     z-index: 2;
     outline: none;
     background: none;
@@ -364,7 +367,7 @@ nav a:hover, nav a:focus { text-decoration: underline; color: #4CAF50; }
     opacity: 0 !important;
     visibility: hidden !important;
     position: absolute !important;
-    top: calc(60px - 300px); /* Move the cards up by 300px */
+    top: -300px; /* Raise cards by 300px */
     left: 50% !important;
     transform: translateX(-50%) !important;
     background: #F5F5F5 !important;
@@ -444,7 +447,7 @@ nav a:hover, nav a:focus { text-decoration: underline; color: #4CAF50; }
   .timeline-bar {
     display: block !important;
     position: absolute;
-    top: 50%; /* Center the bar vertically relative to the timeline */
+    top: 50%; /* Center the bar vertically relative to the new position */
     left: 80px;
     width: calc(100% - 160px);
     height: 4px;
@@ -935,6 +938,7 @@ body {
   align-items: center; /* Ensure alignment of plot points with the timeline bar */
   justify-content: flex-start;
   position: relative;
+  top: -300px; /* Raise the timeline by 300px */
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
@@ -954,7 +958,7 @@ body {
 .timeline-bar {
   display: block;
   position: absolute;
-  top: calc(40% - 300px); /* Timeline moved up by 300px */
+  top: 50%; /* Center the bar vertically relative to the new position */
   left: 70px;
   width: calc(100% - 140px);
   height: 4px;
@@ -970,6 +974,7 @@ body {
   flex-direction: column;
   align-items: center;
   min-height: 310px; /* Increase height to accommodate more spacing */
+  top: -300px; /* Raise plot points by 300px */
   z-index: 2;
   outline: none;
   background: none;
@@ -1210,7 +1215,7 @@ body {
   .timeline-bar {
     display: block !important;
     position: absolute;
-    top: 50%; /* Center the bar vertically relative to the timeline */
+    top: 50%; /* Center the bar vertically relative to the new position */
     left: 70px;
     width: calc(100% - 140px);
     height: 4px;
@@ -1225,6 +1230,7 @@ body {
     flex-direction: column;
     align-items: center;
     min-height: 310px; /* Increase height to accommodate more spacing */
+    top: -300px; /* Raise plot points by 300px */
     z-index: 2;
     outline: none;
     background: none;
@@ -1279,7 +1285,7 @@ body {
     opacity: 0 !important;
     visibility: hidden !important;
     position: absolute !important;
-    top: calc(60% - 250px); /* Position cards below the timeline */
+    top: -300px; /* Raise cards by 300px */
     left: 50% !important;
     transform: translateX(-50%) !important;
     background: #F5F5F5 !important;
@@ -1359,7 +1365,7 @@ body {
   .timeline-bar {
     display: block !important;
     position: absolute;
-    top: 50%; /* Center the bar vertically relative to the timeline */
+    top: 50%; /* Center the bar vertically relative to the new position */
     left: 80px;
     width: calc(100% - 160px);
     height: 4px;
