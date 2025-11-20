@@ -39,7 +39,7 @@ nav a:hover, nav a:focus { text-decoration: underline; color: #4CAF50; }
 .timeline-bar {
   display: block;
   position: absolute;
-  top: 50%; /* Center the bar vertically relative to the timeline */
+  top: 40%; /* Raise the timeline bar */
   left: 70px;
   width: calc(100% - 140px);
   height: 4px;
@@ -73,9 +73,9 @@ nav a:hover, nav a:focus { text-decoration: underline; color: #4CAF50; }
 
 .timeline-dot-horizontal {
   position: absolute;
-  top: 50%; /* Align dots with the center of the timeline bar */
+  top: 40%; /* Align plot points with the raised timeline bar */
   left: 50%;
-  transform: translate(-50%, -20%); /* Adjusted vertical alignment to 20% */
+  transform: translate(-50%, 50%); /* Adjust vertical alignment */
   width: 18px;
   height: 18px;
   background: #4CAF50;
@@ -328,7 +328,7 @@ nav a:hover, nav a:focus { text-decoration: underline; color: #4CAF50; }
     position: absolute;
     top: 50%; /* Align dots with the center of the timeline bar */
     left: 50%;
-    transform: translate(-50%, -20%); /* Adjusted vertical alignment to 20% */
+    transform: translate(-50%, 100%); /* Adjusted vertical alignment to 70% */
     width: 18px;
     height: 18px;
     background: #4CAF50;
@@ -386,6 +386,7 @@ nav a:hover, nav a:focus { text-decoration: underline; color: #4CAF50; }
     gap: 18px !important;
     overflow: visible !important;
     margin-bottom: 1rem !important;
+    transform: translate(-50%, 70%) !important; /* Correctly applies horizontal and vertical translation */
   }
   .timeline-event-horizontal.active .timeline-card {
     display: flex !important;
@@ -953,7 +954,7 @@ body {
 .timeline-bar {
   display: block;
   position: absolute;
-  top: 50%; /* Center the bar vertically relative to the timeline */
+  top: 40%; /* Raise the timeline bar */
   left: 70px;
   width: calc(100% - 140px);
   height: 4px;
@@ -987,9 +988,9 @@ body {
 
 .timeline-dot-horizontal {
   position: absolute;
-  top: 50%; /* Align dots with the center of the timeline bar */
+  top: 40%; /* Align plot points with the raised timeline bar */
   left: 50%;
-  transform: translate(-50%, -20%); /* Adjusted vertical alignment to 20% */
+  transform: translate(-50%, 50%); /* Adjust vertical alignment */
   width: 18px;
   height: 18px;
   background: #4CAF50;
@@ -1242,7 +1243,7 @@ body {
     position: absolute;
     top: 50%; /* Align dots with the center of the timeline bar */
     left: 50%;
-    transform: translate(-50%, -20%); /* Adjusted vertical alignment to 20% */
+    transform: translate(-50%, 100%); /* Adjusted vertical alignment to 70% */
     width: 18px;
     height: 18px;
     background: #4CAF50;
@@ -1300,6 +1301,7 @@ body {
     gap: 18px !important;
     overflow: visible !important;
     margin-bottom: 1rem !important;
+    transform: translate(-50%, 70%) !important; /* Correctly applies horizontal and vertical translation */
   }
   .timeline-event-horizontal.active .timeline-card {
     display: flex !important;
@@ -1867,7 +1869,7 @@ body {
 .timeline-bar {
   display: block;
   position: absolute;
-  top: 50%; /* Center the bar vertically relative to the timeline */
+  top: 40%; /* Raise the timeline bar */
   left: 70px;
   width: calc(100% - 140px);
   height: 4px;
@@ -1901,9 +1903,9 @@ body {
 
 .timeline-dot-horizontal {
   position: absolute;
-  top: 50%; /* Align dots with the center of the timeline bar */
+  top: 40%; /* Align plot points with the raised timeline bar */
   left: 50%;
-  transform: translate(-50%, -20%); /* Adjusted vertical alignment to 20% */
+  transform: translate(-50%, 50%); /* Adjust vertical alignment */
   width: 18px;
   height: 18px;
   background: #4CAF50;
@@ -2156,7 +2158,7 @@ body {
     position: absolute;
     top: 50%; /* Align dots with the center of the timeline bar */
     left: 50%;
-    transform: translate(-20%, 110%); /* Adjusted vertical alignment to 20% */
+    transform: translate(-50%, 100%); /* Adjusted vertical alignment to 70% */
     width: 18px;
     height: 18px;
     background: #4CAF50;
@@ -2214,6 +2216,7 @@ body {
     gap: 18px !important;
     overflow: visible !important;
     margin-bottom: 1rem !important;
+    transform: translate(-50%, 70%) !important; /* Correctly applies horizontal and vertical translation */
   }
   .timeline-event-horizontal.active .timeline-card {
     display: flex !important;
