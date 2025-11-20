@@ -1,12 +1,12 @@
 body { margin: 0; font-family: Arial, sans-serif; background: #fff; color: #222; }
-header { background: #0071C5; color: #fff; padding: 1rem 2rem; text-align: center; }
+header { background: #0071C5; color: #fff; padding: 0; text-align: center; } /* Removed padding */
 .header-title { margin: 0; font-size: 2rem; font-weight: bold; text-align: center; }
-nav { margin-top: 0; } /* Removed margin */
-nav a { color: #fff; margin: 0; text-decoration: none; font-weight: 500; transition: color 0.2s; } /* Removed margin */
+nav { margin-top: 0; }
+nav a { color: #fff; margin: 0; text-decoration: none; font-weight: 500; transition: color 0.2s; }
 nav a:hover, nav a:focus { text-decoration: underline; color: #4CAF50; }
-.hero { background: linear-gradient(135deg, #0071C5 50%, #4CAF50 50%); color: #FFFFFF; text-align: center; padding: 4rem 2rem; }
+.hero { background: linear-gradient(135deg, #0071C5 50%, #4CAF50 50%); color: #FFFFFF; text-align: center; padding: 0; } /* Removed padding */
 .content { display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; padding: 3rem 2rem; background-color: #E0E0E0; }
-.show-card-btn { display: inline-block; background-color: #0071C5; color: #fff; padding: 0.75rem 1.5rem; border-radius: 8px; font-weight: bold; cursor: pointer; margin: 0; font-size: 1.1rem; text-align: center; text-decoration: none; border: none; transition: background 0.2s, text-decoration 0.2s; } /* Removed margin */
+.show-card-btn { display: inline-block; background-color: #0071C5; color: #fff; padding: 0.75rem 1.5rem; border-radius: 8px; font-weight: bold; cursor: pointer; margin: 0; font-size: 1.1rem; text-align: center; text-decoration: none; border: none; transition: background 0.2s, text-decoration 0.2s; }
 .show-card-btn:hover, .show-card-btn:focus, .show-card-btn.active-link { background-color: #004e91; text-decoration: underline; }
 
 /* Timeline Section */
@@ -20,6 +20,7 @@ nav a:hover, nav a:focus { text-decoration: underline; color: #4CAF50; }
   align-items: center; /* Ensure alignment of plot points with the timeline bar */
   justify-content: flex-start;
   position: relative;
+  top: -300px; /* Raise the timeline by 300px */
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
@@ -39,7 +40,7 @@ nav a:hover, nav a:focus { text-decoration: underline; color: #4CAF50; }
 .timeline-bar {
   display: block;
   position: absolute;
-  top: calc(40% - 300px); /* Timeline moved up by 300px */
+  top: 50%; /* Center the bar vertically relative to the new position */
   left: 70px;
   width: calc(100% - 140px);
   height: 4px;
@@ -55,6 +56,7 @@ nav a:hover, nav a:focus { text-decoration: underline; color: #4CAF50; }
   flex-direction: column;
   align-items: center;
   min-height: 310px; /* Increase height to accommodate more spacing */
+  top: -300px; /* Raise plot points by 300px */
   z-index: 2;
   outline: none;
   background: none;
@@ -295,7 +297,7 @@ nav a:hover, nav a:focus { text-decoration: underline; color: #4CAF50; }
   .timeline-bar {
     display: block !important;
     position: absolute;
-    top: 50%; /* Center the bar vertically relative to the timeline */
+    top: 50%; /* Center the bar vertically relative to the new position */
     left: 70px;
     width: calc(100% - 140px);
     height: 4px;
@@ -310,6 +312,7 @@ nav a:hover, nav a:focus { text-decoration: underline; color: #4CAF50; }
     flex-direction: column;
     align-items: center;
     min-height: 310px; /* Increase height to accommodate more spacing */
+    top: -300px; /* Raise plot points by 300px */
     z-index: 2;
     outline: none;
     background: none;
@@ -364,7 +367,7 @@ nav a:hover, nav a:focus { text-decoration: underline; color: #4CAF50; }
     opacity: 0 !important;
     visibility: hidden !important;
     position: absolute !important;
-    top: calc(60px - 300px); /* Move the cards up by 300px */
+    top: -300px; /* Raise cards by 300px */
     left: 50% !important;
     transform: translateX(-50%) !important;
     background: #F5F5F5 !important;
@@ -444,7 +447,7 @@ nav a:hover, nav a:focus { text-decoration: underline; color: #4CAF50; }
   .timeline-bar {
     display: block !important;
     position: absolute;
-    top: 50%; /* Center the bar vertically relative to the timeline */
+    top: 50%; /* Center the bar vertically relative to the new position */
     left: 80px;
     width: calc(100% - 160px);
     height: 4px;
@@ -935,6 +938,7 @@ body {
   align-items: center; /* Ensure alignment of plot points with the timeline bar */
   justify-content: flex-start;
   position: relative;
+  top: -300px; /* Raise the timeline by 300px */
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
@@ -954,7 +958,7 @@ body {
 .timeline-bar {
   display: block;
   position: absolute;
-  top: calc(40% - 300px); /* Timeline moved up by 300px */
+  top: 50%; /* Center the bar vertically relative to the new position */
   left: 70px;
   width: calc(100% - 140px);
   height: 4px;
@@ -970,6 +974,7 @@ body {
   flex-direction: column;
   align-items: center;
   min-height: 310px; /* Increase height to accommodate more spacing */
+  top: -300px; /* Raise plot points by 300px */
   z-index: 2;
   outline: none;
   background: none;
@@ -1210,7 +1215,7 @@ body {
   .timeline-bar {
     display: block !important;
     position: absolute;
-    top: 50%; /* Center the bar vertically relative to the timeline */
+    top: 50%; /* Center the bar vertically relative to the new position */
     left: 70px;
     width: calc(100% - 140px);
     height: 4px;
@@ -1225,6 +1230,7 @@ body {
     flex-direction: column;
     align-items: center;
     min-height: 310px; /* Increase height to accommodate more spacing */
+    top: -300px; /* Raise plot points by 300px */
     z-index: 2;
     outline: none;
     background: none;
@@ -1279,7 +1285,7 @@ body {
     opacity: 0 !important;
     visibility: hidden !important;
     position: absolute !important;
-    top: calc(60% - 250px); /* Position cards below the timeline */
+    top: -300px; /* Raise cards by 300px */
     left: 50% !important;
     transform: translateX(-50%) !important;
     background: #F5F5F5 !important;
@@ -1359,7 +1365,7 @@ body {
   .timeline-bar {
     display: block !important;
     position: absolute;
-    top: 50%; /* Center the bar vertically relative to the timeline */
+    top: 50%; /* Center the bar vertically relative to the new position */
     left: 80px;
     width: calc(100% - 160px);
     height: 4px;
