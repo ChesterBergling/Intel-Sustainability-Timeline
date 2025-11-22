@@ -124,6 +124,17 @@ nav a:focus {
   text-align: center;
 }
 
+/* Adding margins between the timeline title, years, and the timeline on desktop */
+@media (min-width: 900px) {
+  .timeline-title {
+    margin-bottom: 2rem; /* Add 2rem margin below the timeline title */
+  }
+
+  .timeline-date-horizontal {
+    margin-bottom: 1rem; /* Add 1rem margin below the years */
+  }
+}
+
 /* Shared card styles */
 .timeline-card {
   display: none; /* shown when .active is added */
@@ -198,7 +209,7 @@ nav a:focus {
 .timeline-dot-vertical {
   position: absolute;
   left: 28px;
-  top: 0.6rem;
+  top: calc(0.6rem + 15px); /* Adjust the top position to lower the dots */
   width: 24px;
   height: 24px;
   background: #4caf50;
@@ -213,11 +224,8 @@ nav a:focus {
   font-weight: bold;
   color: #0071c5;
   font-size: 1.1rem;
-  margin-bottom: 0.4rem;
-}
-
-.timeline-event-vertical .timeline-card {
-  margin-top: 0.25rem;
+  margin-bottom: 1.5rem; /* Increase margin below the date to 1.5rem */
+  padding-bottom: 3rem; /* Add 1rem padding below the date */
 }
 
 /* active state */
@@ -238,9 +246,9 @@ nav a:focus {
   .timeline-horizontal {
     display: block;
     position: relative;
-    max-width: 1200px;
+    max-width: 1200px; /* Extended the timeline width to cover all cards */
     margin: 0 auto;
-    padding: 3rem 0 5rem 0;
+    padding: 0 0 3rem 0; /* Removed top padding to move it up */
   }
 
   .timeline-vertical {
@@ -251,9 +259,10 @@ nav a:focus {
   .timeline-bar {
     position: relative;
     height: 4px;
-    margin: 3rem 70px 0 70px;
+    margin: 3rem 50px 0 50px; /* Adjusted margins to center the extended bar */
     background: linear-gradient(90deg, #0071c5, #4caf50);
     border-radius: 2px;
+    margin-top: 0; /* Align the bar with the plot points */
   }
 
   /* Horizontal event positions */
@@ -268,15 +277,17 @@ nav a:focus {
     text-align: center;
   }
 
-  /* Adjust these left positions as needed */
-  .timeline-event-horizontal[data-index="0"] { left: 70px; }
-  .timeline-event-horizontal[data-index="1"] { left: 220px; }
-  .timeline-event-horizontal[data-index="2"] { left: 370px; }
-  .timeline-event-horizontal[data-index="3"] { left: 520px; }
-  .timeline-event-horizontal[data-index="4"] { left: 670px; }
-  .timeline-event-horizontal[data-index="5"] { left: 820px; }
-  .timeline-event-horizontal[data-index="6"] { left: 970px; }
-  .timeline-event-horizontal[data-index="7"] { left: 1120px; }
+  /* Adjusted these left positions as needed */
+  .timeline-event-horizontal[data-index="0"] { left: 20px; }
+  .timeline-event-horizontal[data-index="1"] { left: 150px; }
+  .timeline-event-horizontal[data-index="2"] { left: 280px; }
+  .timeline-event-horizontal[data-index="3"] { left: 410px; }
+  .timeline-event-horizontal[data-index="4"] { left: 540px; }
+  .timeline-event-horizontal[data-index="5"] { left: 670px; }
+  .timeline-event-horizontal[data-index="6"] { left: 800px; }
+  .timeline-event-horizontal[data-index="7"] { left: 930px; }
+  .timeline-event-horizontal[data-index="8"] { left: 1060px; }
+  .timeline-event-horizontal[data-index="9"] { left: 1190px; }
 
   /* Dot on bar */
   .timeline-dot-horizontal {
@@ -305,6 +316,7 @@ nav a:focus {
     border-radius: 8px;
     font-size: 0.95rem;
     margin-bottom: 0.75rem;
+    margin-top: -2.5rem; /* Increased negative margin to move it higher */
   }
 
   /* Card below the bar */
@@ -314,6 +326,36 @@ nav a:focus {
     left: 50%;
     transform: translateX(-50%);
     flex-direction: row;
+  }
+
+  /* Adjusting the position of the year label and plot points */
+  /* Position the year label above the plot points */
+  .timeline-date-horizontal {
+    margin-bottom: 0.25rem; /* Reduce space below the year label */
+    margin-top: -4rem; /* Move the year label above the plot points */
+  }
+
+  /* Adjust the plot points to be right below the year label */
+  .timeline-dot-horizontal {
+    transform: translateY(-6px); /* Slightly adjust the dot position */
+  }
+
+  /* Ensure the timeline bar aligns with the plot points */
+  .timeline-bar {
+    margin-top: 1.5rem; /* Adjust the bar position to align with the dots */
+  }
+
+  /* Move the horizontal timeline and plot points to the left */
+  .timeline-horizontal {
+    margin-left: 100px; /* Shift the timeline 300px to the right */
+  }
+
+  .timeline-horizontal {
+    margin-top: 3rem; /* Move the timeline further down */
+  }
+
+  .timeline-date-horizontal {
+    margin-top: 1rem; /* Move the years further down */
   }
 }
 
@@ -333,7 +375,7 @@ nav a:focus {
   }
 
   .timeline-vertical {
-    padding-left: 70px;
+    padding-left: 15px; /* Align the vertical timeline closer to the plot points */
   }
 
   .timeline-card {
@@ -350,6 +392,11 @@ nav a:focus {
   .card-text {
     font-size: 0.9rem;
   }
+
+  /* Adjusting mobile view to align plot points with the timeline */
+  .timeline-dot-vertical {
+    left: 16px; /* Adjust dot position to align with the vertical line */
+  }
 }
 
 /* ========== FOOTER ========== */
@@ -358,16 +405,26 @@ footer {
   background: linear-gradient(90deg, #0071c5 0%, #4caf50 100%);
   color: #ffffff;
   text-align: center;
-  padding: 1.2rem 1rem;
-  font-size: 0.95rem;
+  padding: 0.5rem 0.5rem; /* Reduce padding to make the footer smaller */
+  font-size: 0.75rem; /* Slightly smaller font size */
+  height: auto; /* Remove fixed height to allow dynamic resizing */
 }
 
 footer form {
   max-width: 500px;
   margin: 0 auto 1rem auto;
   text-align: left;
+  height: auto; /* Remove fixed height to allow dynamic resizing */
 }
 
 footer p {
   margin: 0.5rem 0 0 0;
+}
+
+/* Adjusting padding for iPads */
+
+@media (min-width: 600px) and (max-width: 900px) {
+  .timeline-vertical {
+    padding-left: 10px; /* Set left padding for iPads */
+  }
 }
