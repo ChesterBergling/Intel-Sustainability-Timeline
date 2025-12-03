@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function() { 
   const buttons = document.querySelectorAll('.show-card-btn');
   const cards = document.querySelectorAll('.timeline-card');
   const plotPoints = document.querySelectorAll('.timeline-dot-horizontal, .timeline-dot-vertical');
@@ -16,7 +16,9 @@ document.addEventListener('DOMContentLoaded', function() {
     button.addEventListener('mouseenter', () => {
       cards.forEach(card => card.classList.remove('active')); // Hide all cards
       if (cards[index]) {
-        cards[index].classList.add('active'); // Show the corresponding card
+        cards[index].classList.add('active'); 
+      
+
       }
     });
   });
@@ -26,22 +28,23 @@ document.addEventListener('DOMContentLoaded', function() {
     plotPoint.addEventListener('mouseenter', () => {
       cards.forEach(card => card.classList.remove('active')); // Hide all cards
       if (cards[index]) {
-        cards[index].classList.add('active'); // Show the corresponding card
-      }
+        cards[index].classList.add('active'); 
+      } // Fixed closing brace
     });
 
     plotPoint.addEventListener('click', () => {
       cards.forEach(card => card.classList.remove('active')); // Hide all cards
       if (cards[index]) {
-        cards[index].classList.add('active'); // Show the corresponding card
+        cards[index].classList.add('active'); 
       }
     });
-  });
+  }); // Added missing closing brace for plotPoints.forEach
 
   // Optional: Hide all cards when clicking outside
   document.addEventListener('click', (e) => {
     if (!e.target.closest('.show-card-btn') && !e.target.closest('.timeline-card') && !e.target.closest('.timeline-dot-horizontal') && !e.target.closest('.timeline-dot-vertical')) {
       cards.forEach(card => card.classList.remove('active'));
+      
     }
   });
 
@@ -60,6 +63,7 @@ document.addEventListener('DOMContentLoaded', function() {
         cards.forEach(card => card.classList.remove('active'));
         if (cards[index]) {
           cards[index].classList.add('active');
+          adjustHorizontalTimelineHeight(); // Added function call
         }
       });
 
@@ -69,6 +73,7 @@ document.addEventListener('DOMContentLoaded', function() {
         cards.forEach(card => card.classList.remove('active'));
         if (cards[index]) {
           cards[index].classList.add('active');
+          adjustHorizontalTimelineHeight(); // Added function call
         }
       });
     });

@@ -133,6 +133,10 @@ nav a:focus {
   .timeline-date-horizontal {
     margin-bottom: 1rem; /* Add 1rem margin below the years */
   }
+
+  .timeline-section {
+    padding: 3rem 1.5rem;
+  }
 }
 
 /* Shared card styles */
@@ -169,6 +173,7 @@ nav a:focus {
 }
 
 /* ========== MOBILE-FIRST: VERTICAL TIMELINE ========== */
+/* ========== MOBILE-FIRST: VERTICAL TIMELINE ========== */
 
 /* Default: vertical visible, horizontal hidden */
 .timeline-horizontal {
@@ -182,14 +187,14 @@ nav a:focus {
   position: relative;
   max-width: 900px;
   margin: 0 auto;
-  padding-left: 80px; /* space for the vertical line & dots */
+  padding-left: 0; /* no global left padding; we'll handle spacing per event */
 }
 
 /* Vertical line */
 .timeline-vertical::before {
   content: "";
   position: absolute;
-  left: 40px;
+  left: 80px; /* line sits in the middle between date (left) and card (right) */
   top: 0;
   bottom: 0;
   width: 4px;
@@ -197,21 +202,22 @@ nav a:focus {
   border-radius: 2px;
 }
 
-/* Vertical event */
+/* Vertical event container: anchor for date, dot, and card */
 .timeline-event-vertical {
   position: relative;
-  display: flex;
-  flex-direction: column;
+  display: block;
   cursor: pointer;
+  padding-left: 130px;  /* space on the left for line + dot + date */
+  margin-bottom: 2rem;
 }
 
-/* Dot */
+/* Dot centered on the vertical line */
 .timeline-dot-vertical {
   position: absolute;
-  left: 28px;
-  top: calc(0.6rem + 15px); /* Adjust the top position to lower the dots */
-  width: 24px;
-  height: 24px;
+  left: 72px;           /* 72px + (dot width / 2 ≈ 8px) ≈ 80px line center */
+  top: 0.6rem;
+  width: 16px;
+  height: 16px;
   background: #4caf50;
   border: 3px solid #0071c5;
   border-radius: 50%;
@@ -219,13 +225,30 @@ nav a:focus {
   transition: border 0.2s, background 0.2s;
 }
 
-/* Date + card wrapper */
+/* Date to the LEFT of the vertical bar */
 .timeline-date-vertical {
+  position: absolute;
+  left: 0;              /* left edge of the event */
+  top: 10px;
+  width: 65px;          /* space for year text */
+  text-align: right;    /* text hugs the bar */
   font-weight: bold;
   color: #0071c5;
   font-size: 1.1rem;
-  margin-bottom: 1.5rem; /* Increase margin below the date to 1.5rem */
-  padding-bottom: 3rem; /* Add 1rem padding below the date */
+  margin: 0;
+  padding: 0;
+}
+
+/* active state */
+.timeline-event-vertical.active .timeline-dot-vertical {
+  border-color: #4caf50;
+  background: #0071c5;
+}
+
+/* For vertical layout, cards are block-stacked and sit below date + dot */
+.timeline-event-vertical .timeline-card {
+  flex-direction: row;
+  margin-top: 2.25rem;  /* space under date/dot */
 }
 
 /* active state */
@@ -359,8 +382,29 @@ nav a:focus {
   }
 }
 
-/* ========== SMALL SCREENS FINE-TUNING ========== */
+/* Ensure vertical timeline on iPads (600px to 900px) */
+@media (min-width: 600px) and (max-width: 900px) {
+  .timeline-horizontal {
+    display: none;
+  }
 
+  .timeline-vertical {
+    display: flex;
+  }
+}
+
+/* Ensure vertical timeline on iPad Pro (1024x1366) and Surface Pro 7 (912x1368) */
+@media (min-width: 912px) and (max-width: 1368px) {
+  .timeline-horizontal {
+    display: none;
+  }
+
+  .timeline-vertical {
+    display: flex;
+  }
+}
+
+/* ========== SMALL SCREENS FINE-TUNING ========== */
 @media (max-width: 600px) {
   .hero {
     padding: 2rem 1rem;
@@ -374,8 +418,9 @@ nav a:focus {
     padding: 2rem 1rem;
   }
 
+  /* keep same structure for vertical timeline on small screens */
   .timeline-vertical {
-    padding-left: 15px; /* Align the vertical timeline closer to the plot points */
+    padding-left: 0;
   }
 
   .timeline-card {
@@ -393,38 +438,68 @@ nav a:focus {
     font-size: 0.9rem;
   }
 
-  /* Adjusting mobile view to align plot points with the timeline */
+  /* Dot stays centered on the vertical line at 80px */
   .timeline-dot-vertical {
-    left: 16px; /* Adjust dot position to align with the vertical line */
+    left: 72px;
   }
 }
-
-/* ========== FOOTER ========== */
 
 footer {
   background: linear-gradient(90deg, #0071c5 0%, #4caf50 100%);
   color: #ffffff;
   text-align: center;
-  padding: 0.5rem 0.5rem; /* Reduce padding to make the footer smaller */
-  font-size: 0.75rem; /* Slightly smaller font size */
-  height: auto; /* Remove fixed height to allow dynamic resizing */
+  padding: 2rem 1rem; /* Adjusted padding for size */
+  font-size: 1rem; /* Increased font size for better readability */
+  border-radius: 8px; /* Added rounded corners */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Added subtle shadow */
 }
 
 footer form {
-  max-width: 500px;
-  margin: 0 auto 1rem auto;
-  text-align: left;
-  height: auto; /* Remove fixed height to allow dynamic resizing */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+footer input[type="text"],
+footer input[type="email"] {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+footer input[type="checkbox"] {
+  margin-right: 0.5rem;
+}
+
+footer label {
+  display: flex;
+  align-items: center;
+  font-size: 0.9rem;
+  color: #ffffff;
+}
+
+footer button {
+  background-color: #0071c5;
+  color: #ffffff;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+footer button:hover {
+  background-color: #004e91;
 }
 
 footer p {
-  margin: 0.5rem 0 0 0;
-}
-
-/* Adjusting padding for iPads */
-
-@media (min-width: 600px) and (max-width: 900px) {
-  .timeline-vertical {
-    padding-left: 10px; /* Set left padding for iPads */
-  }
+  font-size: 0.85rem;
+  color: #ffffff;
+  margin-top: 1rem;
 }
