@@ -1,0 +1,505 @@
+/* ========== GLOBAL & LAYOUT ========== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  color: #222;
+  background: #ffffff;
+}
+
+/* Limit horizontal scrolling */
+body {
+  overflow-x: hidden;
+}
+
+/* ========== HEADER & NAV ========== */
+
+header {
+  background: #0071c5; /* Intel blue */
+  color: #ffffff;
+  padding: 1rem 1.5rem;
+  text-align: center;
+}
+
+.header-title {
+  margin: 0 0 0.5rem 0;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+nav a {
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: color 0.2s, text-decoration 0.2s;
+}
+
+nav a:hover,
+nav a:focus {
+  color: #4caf50;
+  text-decoration: underline;
+}
+
+/* ========== HERO ========== */
+
+.hero {
+  background: linear-gradient(135deg, #0071c5 50%, #4caf50 50%);
+  color: #ffffff;
+  text-align: center;
+  padding: 2.5rem 1.5rem;
+}
+
+.hero h2 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.8rem;
+}
+
+.hero p {
+  margin: 0;
+  font-size: 1rem;
+}
+
+/* ========== CONTENT BUTTONS ========== */
+
+.content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 2.5rem 1.5rem;
+  background-color: #e0e0e0;
+}
+
+.show-card-btn {
+  display: inline-block;
+  background-color: #0071c5;
+  color: #ffffff;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 1rem;
+  text-align: center;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s, text-decoration 0.2s, transform 0.1s;
+}
+
+.show-card-btn:hover,
+.show-card-btn:focus {
+  background-color: #004e91;
+  text-decoration: underline;
+  transform: translateY(-1px);
+}
+
+/* ========== TIMELINE SECTION (SHARED) ========== */
+
+.timeline-section {
+  padding: 3rem 1.5rem;
+  background: #f5f5f5;
+  width: 100%;
+  position: relative;
+}
+
+.timeline-title {
+  color: #0071c5;
+  font-size: 2rem;
+  margin: 0 0 2rem 0;
+  text-align: center;
+}
+
+/* Adding margins between the timeline title, years, and the timeline on desktop */
+@media (min-width: 900px) {
+  .timeline-title {
+    margin-bottom: 2rem; /* Add 2rem margin below the timeline title */
+  }
+
+  .timeline-date-horizontal {
+    margin-bottom: 1rem; /* Add 1rem margin below the years */
+  }
+
+  .timeline-section {
+    padding: 3rem 1.5rem;
+  }
+}
+
+/* Shared card styles */
+.timeline-card {
+  display: none; /* shown when .active is added */
+  opacity: 0;
+  visibility: hidden;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.13);
+  padding: 1rem;
+  text-align: left;
+  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease;
+}
+
+.timeline-card.active {
+  display: flex;
+  opacity: 1;
+  visibility: visible;
+}
+
+.timeline-img {
+  width: 120px;
+  height: 120px;
+  border-radius: 8px;
+  object-fit: cover;
+  flex-shrink: 0;
+  margin-right: 1rem;
+}
+
+.card-text {
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+/* ========== MOBILE-FIRST: VERTICAL TIMELINE ========== */
+/* ========== MOBILE-FIRST: VERTICAL TIMELINE ========== */
+
+/* Default: vertical visible, horizontal hidden */
+.timeline-horizontal {
+  display: none;
+}
+
+.timeline-vertical {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+  padding-left: 0; /* no global left padding; we'll handle spacing per event */
+}
+
+/* Vertical line */
+.timeline-vertical::before {
+  content: "";
+  position: absolute;
+  left: 80px; /* line sits in the middle between date (left) and card (right) */
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: linear-gradient(180deg, #0071c5, #4caf50);
+  border-radius: 2px;
+}
+
+/* Vertical event container: anchor for date, dot, and card */
+.timeline-event-vertical {
+  position: relative;
+  display: block;
+  cursor: pointer;
+  padding-left: 130px;  /* space on the left for line + dot + date */
+  margin-bottom: 2rem;
+}
+
+/* Dot centered on the vertical line */
+.timeline-dot-vertical {
+  position: absolute;
+  left: 72px;           /* 72px + (dot width / 2 ≈ 8px) ≈ 80px line center */
+  top: 0.6rem;
+  width: 16px;
+  height: 16px;
+  background: #4caf50;
+  border: 3px solid #0071c5;
+  border-radius: 50%;
+  box-sizing: border-box;
+  transition: border 0.2s, background 0.2s;
+}
+
+/* Date to the LEFT of the vertical bar */
+.timeline-date-vertical {
+  position: absolute;
+  left: 0;              /* left edge of the event */
+  top: 10px;
+  width: 65px;          /* space for year text */
+  text-align: right;    /* text hugs the bar */
+  font-weight: bold;
+  color: #0071c5;
+  font-size: 1.1rem;
+  margin: 0;
+  padding: 0;
+}
+
+/* active state */
+.timeline-event-vertical.active .timeline-dot-vertical {
+  border-color: #4caf50;
+  background: #0071c5;
+}
+
+/* For vertical layout, cards are block-stacked and sit below date + dot */
+.timeline-event-vertical .timeline-card {
+  flex-direction: row;
+  margin-top: 2.25rem;  /* space under date/dot */
+}
+
+/* active state */
+.timeline-event-vertical.active .timeline-dot-vertical {
+  border-color: #4caf50;
+  background: #0071c5;
+}
+
+/* For vertical layout, cards are block-stacked */
+.timeline-event-vertical .timeline-card {
+  flex-direction: row;
+}
+
+/* ========== DESKTOP: HORIZONTAL TIMELINE ========== */
+
+@media (min-width: 900px) {
+  /* Horizontal visible, vertical hidden */
+  .timeline-horizontal {
+    display: block;
+    position: relative;
+    max-width: 1200px; /* Extended the timeline width to cover all cards */
+    margin: 0 auto;
+    padding: 0 0 3rem 0; /* Removed top padding to move it up */
+  }
+
+  .timeline-vertical {
+    display: none;
+  }
+
+  /* Horizontal bar */
+  .timeline-bar {
+    position: relative;
+    height: 4px;
+    margin: 3rem 50px 0 50px; /* Adjusted margins to center the extended bar */
+    background: linear-gradient(90deg, #0071c5, #4caf50);
+    border-radius: 2px;
+    margin-top: 0; /* Align the bar with the plot points */
+  }
+
+  /* Horizontal event positions */
+  .timeline-event-horizontal {
+    position: absolute;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    width: 120px;
+    text-align: center;
+  }
+
+  /* Adjusted these left positions as needed */
+  .timeline-event-horizontal[data-index="0"] { left: 20px; }
+  .timeline-event-horizontal[data-index="1"] { left: 150px; }
+  .timeline-event-horizontal[data-index="2"] { left: 280px; }
+  .timeline-event-horizontal[data-index="3"] { left: 410px; }
+  .timeline-event-horizontal[data-index="4"] { left: 540px; }
+  .timeline-event-horizontal[data-index="5"] { left: 670px; }
+  .timeline-event-horizontal[data-index="6"] { left: 800px; }
+  .timeline-event-horizontal[data-index="7"] { left: 930px; }
+  .timeline-event-horizontal[data-index="8"] { left: 1060px; }
+  .timeline-event-horizontal[data-index="9"] { left: 1190px; }
+
+  /* Dot on bar */
+  .timeline-dot-horizontal {
+    width: 18px;
+    height: 18px;
+    background: #4caf50;
+    border: 3px solid #0071c5;
+    border-radius: 50%;
+    box-sizing: border-box;
+    margin-bottom: 0.5rem;
+    transform: translateY(-12px); /* lift dot onto bar */
+    transition: border 0.2s, background 0.2s;
+  }
+
+  .timeline-event-horizontal.active .timeline-dot-horizontal {
+    border-color: #4caf50;
+    background: #0071c5;
+  }
+
+  /* Date label just above bar */
+  .timeline-date-horizontal {
+    font-weight: bold;
+    color: #0071c5;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 2px 8px;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    margin-bottom: 0.75rem;
+    margin-top: -2.5rem; /* Increased negative margin to move it higher */
+  }
+
+  /* Card below the bar */
+  .timeline-event-horizontal .timeline-card {
+    position: absolute;
+    top: 90px;            /* below the bar */
+    left: 50%;
+    transform: translateX(-50%);
+    flex-direction: row;
+  }
+
+  /* Adjusting the position of the year label and plot points */
+  /* Position the year label above the plot points */
+  .timeline-date-horizontal {
+    margin-bottom: 0.25rem; /* Reduce space below the year label */
+    margin-top: -4rem; /* Move the year label above the plot points */
+  }
+
+  /* Adjust the plot points to be right below the year label */
+  .timeline-dot-horizontal {
+    transform: translateY(-6px); /* Slightly adjust the dot position */
+  }
+
+  /* Ensure the timeline bar aligns with the plot points */
+  .timeline-bar {
+    margin-top: 1.5rem; /* Adjust the bar position to align with the dots */
+  }
+
+  /* Move the horizontal timeline and plot points to the left */
+  .timeline-horizontal {
+    margin-left: 100px; /* Shift the timeline 300px to the right */
+  }
+
+  .timeline-horizontal {
+    margin-top: 3rem; /* Move the timeline further down */
+  }
+
+  .timeline-date-horizontal {
+    margin-top: 1rem; /* Move the years further down */
+  }
+}
+
+/* Ensure vertical timeline on iPads (600px to 900px) */
+@media (min-width: 600px) and (max-width: 900px) {
+  .timeline-horizontal {
+    display: none;
+  }
+
+  .timeline-vertical {
+    display: flex;
+  }
+}
+
+/* Ensure vertical timeline on iPad Pro (1024x1366) and Surface Pro 7 (912x1368) */
+@media (min-width: 912px) and (max-width: 1368px) {
+  .timeline-horizontal {
+    display: none;
+  }
+
+  .timeline-vertical {
+    display: flex;
+  }
+}
+
+/* ========== SMALL SCREENS FINE-TUNING ========== */
+@media (max-width: 600px) {
+  .hero {
+    padding: 2rem 1rem;
+  }
+
+  .content {
+    padding: 2rem 1rem;
+  }
+
+  .timeline-section {
+    padding: 2rem 1rem;
+  }
+
+  /* keep same structure for vertical timeline on small screens */
+  .timeline-vertical {
+    padding-left: 0;
+  }
+
+  .timeline-card {
+    flex-direction: row;
+    width: 100%;
+  }
+
+  .timeline-img {
+    width: 90px;
+    height: 90px;
+    margin-right: 0.75rem;
+  }
+
+  .card-text {
+    font-size: 0.9rem;
+  }
+
+  /* Dot stays centered on the vertical line at 80px */
+  .timeline-dot-vertical {
+    left: 72px;
+  }
+}
+
+footer {
+  background: linear-gradient(90deg, #0071c5 0%, #4caf50 100%);
+  color: #ffffff;
+  text-align: center;
+  padding: 2rem 1rem; /* Adjusted padding for size */
+  font-size: 1rem; /* Increased font size for better readability */
+  border-radius: 8px; /* Added rounded corners */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Added subtle shadow */
+}
+
+footer form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+footer input[type="text"],
+footer input[type="email"] {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+footer input[type="checkbox"] {
+  margin-right: 0.5rem;
+}
+
+footer label {
+  display: flex;
+  align-items: center;
+  font-size: 0.9rem;
+  color: #ffffff;
+}
+
+footer button {
+  background-color: #0071c5;
+  color: #ffffff;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+footer button:hover {
+  background-color: #004e91;
+}
+
+footer p {
+  font-size: 0.85rem;
+  color: #ffffff;
+  margin-top: 1rem;
+}
